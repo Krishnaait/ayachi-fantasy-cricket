@@ -16,33 +16,31 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/">
-          <a className="flex items-center space-x-2">
-            <img src="/images/logo.png" alt="AYACHI" className="h-10 w-auto" />
-          </a>
+        <Link href="/" className="flex items-center space-x-2">
+          <img src="/images/logo.png" alt="AYACHI" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <Link href="/">
-            <a className="transition-colors hover:text-primary">Home</a>
+          <Link href="/" className="transition-colors hover:text-primary">
+            Home
           </Link>
-          <Link href="/how-to-play">
-            <a className="transition-colors hover:text-primary">How to Play</a>
+          <Link href="/how-to-play" className="transition-colors hover:text-primary">
+            How to Play
           </Link>
-          <Link href="/about">
-            <a className="transition-colors hover:text-primary">About Us</a>
+          <Link href="/about" className="transition-colors hover:text-primary">
+            About Us
           </Link>
-          <Link href="/contact">
-            <a className="transition-colors hover:text-primary">Contact</a>
+          <Link href="/contact" className="transition-colors hover:text-primary">
+            Contact
           </Link>
           {isAuthenticated && (
             <>
-              <Link href="/dashboard">
-                <a className="transition-colors hover:text-primary">Dashboard</a>
+              <Link href="/dashboard" className="transition-colors hover:text-primary">
+                Dashboard
               </Link>
-              <Link href="/contests">
-                <a className="transition-colors hover:text-primary">Contests</a>
+              <Link href="/contests" className="transition-colors hover:text-primary">
+                Contests
               </Link>
             </>
           )}

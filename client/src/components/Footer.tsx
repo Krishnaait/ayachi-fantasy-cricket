@@ -23,24 +23,18 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/how-to-play">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    How to Play
-                  </a>
+                <Link href="/how-to-play" className="text-muted-foreground hover:text-foreground transition-colors">
+                  How to Play
                 </Link>
               </li>
               <li>
-                <Link href="/about">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    About Us
-                  </a>
+                <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    Contact Us
-                  </a>
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -51,38 +45,28 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/terms">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    Terms & Conditions
-                  </a>
+                <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    Privacy Policy
-                  </a>
+                <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/responsible-gaming">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    Responsible Gaming
-                  </a>
+                <Link href="/responsible-gaming" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Responsible Gaming
                 </Link>
               </li>
               <li>
-                <Link href="/disclaimer">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    Disclaimer
-                  </a>
+                <Link href="/disclaimer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Disclaimer
                 </Link>
               </li>
               <li>
-                <Link href="/faq">
-                  <a className="text-muted-foreground hover:text-foreground transition-colors">
-                    FAQ
-                  </a>
+                <Link href="/faq" className="text-muted-foreground hover:text-foreground transition-colors">
+                  FAQ
                 </Link>
               </li>
             </ul>
