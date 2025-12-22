@@ -93,3 +93,11 @@
 - [x] Enhance About Us page with detailed sections (Mission, Vision, Pillars, Do's & Don'ts, What Makes Different, What You'll Learn)
 - [x] Add comprehensive content to all pages
 - [x] Ensure all company details (CIN, GST, PAN) are prominently displayed
+
+
+## Legal Pages Enhancement
+- [x] Create comprehensive Terms & Conditions page with detailed sections
+- [x] Create comprehensive Privacy Policy page with detailed sections
+- [x] Create comprehensive Responsible Gaming page with detailed sections
+- [x] Create comprehensive Disclaimer page with detailed sections
+- [x] Create comprehensive FAQ page with detailed Q&A

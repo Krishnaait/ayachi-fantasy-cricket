@@ -2,49 +2,64 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Info } from "lucide-react";
 
 export default function Disclaimer() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 py-12 px-4">
-        <div className="container max-w-4xl">
-          <h1 className="text-4xl font-bold mb-8">Disclaimer & Compliance</h1>
-          
-          <Alert className="mb-8" variant="destructive">
-            <AlertTriangle className="h-4 w-4" />
+        <div className="container max-w-5xl">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <AlertTriangle className="h-10 w-10 text-primary" />
+            <h1 className="text-4xl md:text-5xl font-bold text-center">Disclaimer</h1>
+          </div>
+          <p className="text-center text-lg mb-8">Important legal disclaimers and limitations</p>
+
+          <Alert className="mb-8">
+            <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>IMPORTANT:</strong> This is a FREE educational platform. NO REAL MONEY. NO PRIZES. NO FINANCIAL RISK.
+              <strong>Please Read Carefully:</strong> This disclaimer outlines important limitations and clarifications about AYACHI Fantasy Sport platform.
             </AlertDescription>
           </Alert>
 
           <div className="space-y-6">
             <Card>
-              <CardHeader><CardTitle>No Real Money Involvement</CardTitle></CardHeader>
-              <CardContent><p>AYACHI is 100% free. No entry fees, no deposits, no withdrawals, no monetary prizes. Purely educational and entertainment.</p></CardContent>
+              <CardHeader>
+                <CardTitle className="text-2xl">General Disclaimer</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-lg leading-relaxed">
+                  AYACHI Fantasy Sport is operated by <strong>AYACHI HEALTHCARE PRIVATE LIMITED</strong>. This platform is provided for educational and entertainment purposes only.
+                </p>
+              </CardContent>
             </Card>
-            <Card>
-              <CardHeader><CardTitle>Not Gambling</CardTitle></CardHeader>
-              <CardContent><p>This is a skill-based educational platform, not gambling. No financial transactions occur.</p></CardContent>
+
+            <Card className="bg-green-50 dark:bg-green-950 border-2 border-green-500">
+              <CardHeader>
+                <CardTitle className="text-2xl text-green-700 dark:text-green-300">No Real Money Involvement</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-lg leading-relaxed">
+                  AYACHI Fantasy Sport is a <strong>100% FREE platform</strong>. There are:
+                </p>
+                <ul className="space-y-2 text-lg ml-6">
+                  <li className="list-disc">NO entry fees or deposits required</li>
+                  <li className="list-disc">NO cash prizes or monetary rewards</li>
+                  <li className="list-disc">NO financial transactions of any kind</li>
+                  <li className="list-disc">NO gambling or betting involved</li>
+                </ul>
+              </CardContent>
             </Card>
-            <Card>
-              <CardHeader><CardTitle>State Restrictions</CardTitle></CardHeader>
-              <CardContent><p>NOT available in: Andhra Pradesh, Assam, Odisha, Telangana, Nagaland, Sikkim. Residents of these states cannot use this platform.</p></CardContent>
-            </Card>
-            <Card>
-              <CardHeader><CardTitle>Age Restriction</CardTitle></CardHeader>
-              <CardContent><p>Only for users 18 years and above. Minors are strictly prohibited.</p></CardContent>
-            </Card>
-            <Card>
-              <CardHeader><CardTitle>No Warranty</CardTitle></CardHeader>
-              <CardContent><p>Platform provided "AS IS" without warranties. We are not liable for service interruptions or errors.</p></CardContent>
-            </Card>
-            <Card>
-              <CardHeader><CardTitle>Compliance</CardTitle></CardHeader>
-              <CardContent className="space-y-2">
-                <p>AYACHI HEALTHCARE PRIVATE LIMITED complies with Indian laws.</p>
-                <p>CIN: U24110UP2020PTC135826 | GST: 09AAUCA1674K1Z1 | PAN: AAUCA1674K</p>
+
+            <Card className="bg-primary/5 border-primary/20">
+              <CardHeader>
+                <CardTitle className="text-2xl">Contact Information</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg"><strong>AYACHI HEALTHCARE PRIVATE LIMITED</strong></p>
+                <p><strong>CIN:</strong> U24110UP2020PTC135826</p>
+                <p><strong>Address:</strong> H. NO. 1/104, NEW JIA MAU, NEAR PARAG ATM, LUCKNOW, UP, 226001</p>
               </CardContent>
             </Card>
           </div>

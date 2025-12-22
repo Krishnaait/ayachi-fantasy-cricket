@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
 
 export default function FAQ() {
   return (
@@ -8,59 +10,77 @@ export default function FAQ() {
       <Header />
       <main className="flex-1 py-12 px-4">
         <div className="container max-w-4xl">
-          <h1 className="text-4xl font-bold mb-8">Frequently Asked Questions</h1>
-          
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="q1">
-              <AccordionTrigger className="text-left">Is AYACHI really free?</AccordionTrigger>
-              <AccordionContent>Yes! 100% free. No registration fees, no entry fees, no hidden charges. Completely free to play.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q2">
-              <AccordionTrigger className="text-left">Is real money involved?</AccordionTrigger>
-              <AccordionContent>No. Absolutely no real money is involved. No deposits, no withdrawals, no monetary prizes. Zero financial risk.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q3">
-              <AccordionTrigger className="text-left">Who can play?</AccordionTrigger>
-              <AccordionContent>Users must be 18+ years old and NOT residents of Andhra Pradesh, Assam, Odisha, Telangana, Nagaland, or Sikkim.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q4">
-              <AccordionTrigger className="text-left">Why these state restrictions?</AccordionTrigger>
-              <AccordionContent>To comply with state-specific regulations regarding fantasy sports platforms.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q5">
-              <AccordionTrigger className="text-left">What is the purpose of this platform?</AccordionTrigger>
-              <AccordionContent>Educational and entertainment. To help cricket fans learn strategy, player analysis, and team management skills.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q6">
-              <AccordionTrigger className="text-left">How do I create a team?</AccordionTrigger>
-              <AccordionContent>Register → Go to Dashboard → Create Team → Select 11 players → Choose captain and vice-captain → Save team.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q7">
-              <AccordionTrigger className="text-left">How is scoring calculated?</AccordionTrigger>
-              <AccordionContent>Points based on player performance: runs, wickets, catches, etc. Captain gets 2x points, vice-captain gets 1.5x. See "How to Play" for details.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q8">
-              <AccordionTrigger className="text-left">Can I edit my team after joining a contest?</AccordionTrigger>
-              <AccordionContent>No. Once you join a contest, the team is locked. Create a new team for other contests.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q9">
-              <AccordionTrigger className="text-left">Is my data safe?</AccordionTrigger>
-              <AccordionContent>Yes. We use industry-standard security. Passwords are encrypted. See Privacy Policy for details.</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="q10">
-              <AccordionTrigger className="text-left">How do I contact support?</AccordionTrigger>
-              <AccordionContent>Visit our Contact Us page for company details and address.</AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <HelpCircle className="h-10 w-10 text-primary" />
+            <h1 className="text-4xl md:text-5xl font-bold text-center">Frequently Asked Questions</h1>
+          </div>
+          <p className="text-center text-lg mb-12">Find answers to common questions about AYACHI Fantasy Sport</p>
+
+          <div className="space-y-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl">General Questions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="q1">
+                    <AccordionTrigger className="text-lg font-semibold">What is AYACHI Fantasy Sport?</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      AYACHI Fantasy Sport is a 100% free-to-play fantasy cricket platform operated by AYACHI HEALTHCARE PRIVATE LIMITED. It's designed for educational purposes and skill-based gaming with no real money involvement.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="q2">
+                    <AccordionTrigger className="text-lg font-semibold">Is AYACHI really free?</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      Yes! AYACHI is completely free. There are no entry fees, no deposits, no withdrawals, and no monetary prizes. You will never be asked to pay anything.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="q3">
+                    <AccordionTrigger className="text-lg font-semibold">Who can use AYACHI?</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      Users must be 18 years or older and NOT residents of Andhra Pradesh, Assam, Odisha, Telangana, Nagaland, or Sikkim.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl">Account & Registration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="a1">
+                    <AccordionTrigger className="text-lg font-semibold">How do I create an account?</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      Click the "Register" button, provide your name, email, date of birth, state, and create a password. Verify your email to activate your account.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="a2">
+                    <AccordionTrigger className="text-lg font-semibold">Can I have multiple accounts?</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      No. Each user is allowed only ONE account. Creating multiple accounts is strictly prohibited and will result in account termination.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-primary/5 border-primary/20">
+              <CardHeader>
+                <CardTitle className="text-2xl">Still Have Questions?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg mb-4">If you couldn't find the answer you're looking for, please contact us:</p>
+                <p className="text-lg"><strong>AYACHI HEALTHCARE PRIVATE LIMITED</strong></p>
+                <p><strong>CIN:</strong> U24110UP2020PTC135826</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
       <Footer />
