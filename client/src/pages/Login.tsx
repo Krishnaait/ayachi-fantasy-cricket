@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,15 +14,18 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, setLocation] = useLocation();
+  const queryClient = useQueryClient();
 
   const loginMutation = trpc.auth.login.useMutation({
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       if (data.success) {
         toast.success("Login successful!");
-        // Small delay to ensure cookie is set before redirect
+        // Invalidate auth query to refetch user data
+        await queryClient.invalidateQueries({ queryKey: [['auth', 'me']] });
+        // Small delay to ensure cookie is set and query refetched
         setTimeout(() => {
           setLocation("/dashboard");
-        }, 100);
+        }, 200);
       } else {
         toast.error(data.message);
       }
