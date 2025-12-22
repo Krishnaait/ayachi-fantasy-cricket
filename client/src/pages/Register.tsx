@@ -219,12 +219,12 @@ export default function Register() {
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     I agree to the{" "}
-                    <Link href="/terms">
-                      <a className="text-primary hover:underline">Terms & Conditions</a>
+                    <Link href="/terms" className="text-primary hover:underline">
+                      Terms & Conditions
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy">
-                      <a className="text-primary hover:underline">Privacy Policy</a>
+                    <Link href="/privacy" className="text-primary hover:underline">
+                      Privacy Policy
                     </Link>
                   </label>
                 </div>
@@ -239,10 +239,8 @@ export default function Register() {
                 </Button>
                 <p className="text-sm text-center text-muted-foreground">
                   Already have an account?{" "}
-                  <Link href="/login">
-                    <a className="text-primary hover:underline font-medium">
-                      Login here
-                    </a>
+                  <Link href="/login" className="text-primary hover:underline font-medium">
+                    Login here
                   </Link>
                 </p>
               </CardFooter>
