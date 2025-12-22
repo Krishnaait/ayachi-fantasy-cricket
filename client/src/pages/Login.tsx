@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,12 +12,16 @@ import Footer from "@/components/Footer";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [, setLocation] = useLocation();
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: (data) => {
       if (data.success) {
         toast.success("Login successful!");
-        window.location.href = "/dashboard";
+        // Small delay to ensure cookie is set before redirect
+        setTimeout(() => {
+          setLocation("/dashboard");
+        }, 100);
       } else {
         toast.error(data.message);
       }

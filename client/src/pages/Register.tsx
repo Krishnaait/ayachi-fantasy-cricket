@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,12 +35,15 @@ export default function Register() {
     state: "",
   });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [, setLocation] = useLocation();
 
   const registerMutation = trpc.auth.register.useMutation({
     onSuccess: (data) => {
       if (data.success) {
         toast.success("Registration successful! Please login.");
-        window.location.href = "/login";
+        setTimeout(() => {
+          setLocation("/login");
+        }, 100);
       } else {
         toast.error(data.message);
       }
