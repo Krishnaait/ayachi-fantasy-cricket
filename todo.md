@@ -142,3 +142,7 @@
 - [x] Replace footer logo with new AYACHI logo
 - [x] Replace footer icons (18+, Safe & Secure, Educational) with new provided icons
 - [x] Add icons to hero section with styling
+
+
+## Visual Editor Updates
+- [x] Change "Our Mission" heading to "OUR GOALS" on homepage

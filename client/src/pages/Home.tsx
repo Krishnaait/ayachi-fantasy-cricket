@@ -69,7 +69,7 @@ export default function Home() {
       <section className="py-20 px-4 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">OUR GOALS</h2>
             <p className="text-lg text-muted-foreground mb-6">
               At AYACHI, our mission is to revolutionize fantasy cricket by creating a completely free, educational, 
               and skill-based platform that empowers cricket enthusiasts to deepen their understanding of the game 
