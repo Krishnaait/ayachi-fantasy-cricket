@@ -38,6 +38,21 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
+              {/* Trust Badges */}
+              <div className="flex flex-wrap items-center gap-6 pt-6 border-t">
+                <div className="flex items-center gap-2">
+                  <img src="/icon_18plus.png" alt="18+" className="h-16 w-16 object-contain" />
+                  <span className="text-sm font-medium">18+ Only</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-16 w-16 object-contain" />
+                  <span className="text-sm font-medium">Safe & Secure</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img src="/icon_educational.png" alt="Educational" className="h-16 w-16 object-contain" />
+                  <span className="text-sm font-medium">Educational & Entertainment</span>
+                </div>
+              </div>
             </div>
             <div className="relative">
               <img 

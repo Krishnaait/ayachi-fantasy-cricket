@@ -17,7 +17,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <img src="/images/logo.png" alt="AYACHI" className="h-10 w-auto" />
+          <img src="/ayachi_logo.png" alt="AYACHI" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

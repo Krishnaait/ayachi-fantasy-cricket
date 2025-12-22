@@ -9,12 +9,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src="/images/logo.png" alt="AYACHI" className="h-12 w-auto" />
+            <img src="/ayachi_logo.png" alt="AYACHI" className="h-14 w-auto" />
             <p className="text-sm text-muted-foreground">Fantasy Sport</p>
-            <div className="flex space-x-4">
-              <img src="/images/18plus.png" alt="18+" className="h-10 w-10" />
-              <img src="/images/safe-secure.png" alt="Safe & Secure" className="h-10 w-10" />
-              <img src="/images/educational.png" alt="Educational" className="h-10 w-10" />
+            <div className="flex space-x-3">
+              <img src="/icon_18plus.png" alt="18+" className="h-12 w-12 object-contain" />
+              <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-12 w-12 object-contain" />
+              <img src="/icon_educational.png" alt="Educational" className="h-12 w-12 object-contain" />
             </div>
           </div>
 
