@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Heart, Shield, AlertTriangle, CheckCircle2, HelpCircle } from "lucide-react";
+import { Heart, Clock, AlertTriangle, CheckCircle2, Users } from "lucide-react";
 
 export default function ResponsibleGaming() {
   return (
@@ -14,67 +14,39 @@ export default function ResponsibleGaming() {
             <Heart className="h-10 w-10 text-primary" />
             <h1 className="text-4xl md:text-5xl font-bold text-center">Responsible Gaming</h1>
           </div>
-          <p className="text-center text-muted-foreground mb-2">Last Updated: December 22, 2025</p>
-          <p className="text-center text-lg mb-8">Play responsibly and enjoy fantasy cricket safely</p>
+          <p className="text-center text-lg text-muted-foreground mb-8">Play smart, stay balanced, enjoy responsibly</p>
 
-          <Alert className="mb-8">
-            <Shield className="h-4 w-4" />
+          <Alert className="mb-8 border-primary">
+            <CheckCircle2 className="h-4 w-4" />
             <AlertDescription>
-              <strong>100% Free Platform:</strong> AYACHI is completely free with NO real money involved. However, responsible gaming practices are still important for your well-being.
+              <strong>Remember:</strong> AYACHI is 100% free with NO money involved. Enjoy learning and entertainment without financial risk.
             </AlertDescription>
           </Alert>
 
           <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Our Commitment to Responsible Gaming</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-lg leading-relaxed">
-                  At <strong>AYACHI Fantasy Sport</strong>, we are committed to providing a safe, educational, and enjoyable platform for all users. While our platform is 100% free with no financial risk, we recognize the importance of promoting healthy gaming habits and preventing excessive or compulsive behavior.
-                </p>
-              </CardContent>
-            </Card>
+            <Card><CardHeader><CardTitle className="text-2xl">1. What is Responsible Gaming?</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Responsible Gaming means engaging with fantasy cricket in a healthy, balanced manner that enhances your life rather than detracting from it. It involves maintaining control over the time and energy you invest, ensuring that participation remains enjoyable and educational without becoming obsessive or interfering with daily responsibilities.</p><p className="text-lg">While AYACHI involves NO money and poses NO financial risk, it's still important to maintain healthy habits. Responsible Gaming ensures that fantasy cricket remains a fun, educational activity that complements your life rather than dominating it. It's about finding the right balance between enjoyment and other important aspects of life.</p></CardContent></Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Age Verification & Restrictions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-destructive/10 border-2 border-destructive rounded-lg p-6">
-                  <h4 className="font-bold text-xl mb-3">Strict Age Requirement: 18+ Only</h4>
-                  <p className="text-lg">Our platform is exclusively for users aged 18 years and above. Minors are strictly prohibited from accessing or using AYACHI Fantasy Sport.</p>
-                </div>
-              </CardContent>
-            </Card>
+            <Card><CardHeader><CardTitle className="text-2xl">2. How Responsible Gaming Works</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Responsible Gaming works through self-awareness, setting personal boundaries, and maintaining perspective. It involves recognizing that fantasy cricket is entertainment and education—not a substitute for real-life activities, relationships, or responsibilities. You maintain control by setting time limits, taking regular breaks, and ensuring participation doesn't interfere with work, studies, family, or health.</p><p className="text-lg">We support Responsible Gaming by providing a free platform (eliminating financial pressure), offering educational content about healthy gaming habits, implementing age and geographic restrictions, and encouraging users to self-monitor their engagement. Responsible Gaming is a partnership between the platform and users to ensure positive experiences.</p></CardContent></Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">State Restrictions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-lg leading-relaxed">
-                  AYACHI Fantasy Sport is <strong>NOT available</strong> in the following Indian states due to local regulations:
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 mt-4">
-                  {["Andhra Pradesh", "Assam", "Odisha", "Telangana", "Nagaland", "Sikkim"].map(state => (
-                    <div key={state} className="p-4 bg-destructive/10 border border-destructive rounded-lg text-center font-semibold">
-                      {state}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <Card><CardHeader><CardTitle className="text-2xl">3. Healthy Gaming Habits</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Healthy gaming habits include: setting specific time limits for platform use; taking regular breaks during extended sessions; maintaining balance with other activities and responsibilities; using fantasy cricket as a learning tool about cricket analytics; engaging socially with friends and family outside the platform; getting adequate sleep and physical activity; and keeping gaming in perspective as one of many hobbies.</p><p className="text-lg">Develop a routine that incorporates fantasy cricket without letting it dominate your schedule. Treat it as you would any recreational activity—enjoyable in moderation but not at the expense of health, relationships, or obligations. Remember that the goal is entertainment and education, not competition at all costs.</p></CardContent></Card>
 
-            <Card className="bg-primary/5 border-primary/20">
-              <CardHeader>
-                <CardTitle className="text-2xl">Contact & Support</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg"><strong>AYACHI HEALTHCARE PRIVATE LIMITED</strong></p>
-                <p><strong>CIN:</strong> U24110UP2020PTC135826</p>
-              </CardContent>
-            </Card>
+            <Card><CardHeader><CardTitle className="text-2xl">4. Time Management</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Effective time management is crucial for Responsible Gaming. Set clear boundaries for how much time you'll spend on the platform daily or weekly. Use timers or reminders to track your usage. Prioritize important responsibilities like work, studies, family time, and self-care before engaging with fantasy cricket.</p><p className="text-lg">Consider designating specific times for platform use rather than accessing it randomly throughout the day. This helps maintain structure and prevents fantasy cricket from interrupting other activities. If you find yourself spending more time than intended or neglecting responsibilities, it's time to reassess and adjust your habits.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">5. Recognizing Problem Behavior</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Warning signs of problematic gaming include: spending excessive time on the platform that interferes with daily life; feeling anxious or irritable when unable to access the platform; neglecting work, studies, or personal relationships; losing sleep to participate in contests; thinking constantly about fantasy cricket even when engaged in other activities; or using the platform to escape from real-life problems.</p><p className="text-lg">If you notice these signs in yourself or others, it's important to take action. Acknowledge the issue, reduce usage, seek support from friends or family, and consider taking a break from the platform. Remember, even without money involved, any activity can become unhealthy if it dominates your life.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">6. Self-Assessment Tools</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Regularly assess your gaming habits by asking yourself: Am I spending more time than I intended? Is fantasy cricket interfering with my responsibilities? Do I feel compelled to check the platform constantly? Am I neglecting relationships or health? Am I using gaming to avoid dealing with problems? Is my mood significantly affected by contest outcomes?</p><p className="text-lg">If you answer "yes" to multiple questions, consider adjusting your habits. Keep a log of time spent on the platform for a week to gain objective insight. Honest self-assessment is the first step toward maintaining healthy gaming habits and ensuring your participation remains positive.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">7. Setting Personal Limits</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Set clear personal limits before you start using the platform: decide maximum daily/weekly time limits; determine specific times when you won't use the platform (e.g., during meals, before bed, during work); establish priorities that must be completed before accessing fantasy cricket; and commit to taking regular breaks.</p><p className="text-lg">Write down your limits and review them regularly. Share them with a friend or family member for accountability. Adjust limits as needed based on how they're working. The key is being proactive about boundaries rather than reactive when problems arise.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">8. Taking Breaks</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">Regular breaks are essential for maintaining perspective and preventing burnout. Take short breaks during extended sessions (5-10 minutes every hour). Consider taking longer breaks from the platform periodically—a day, a week, or even longer if needed. Use breaks to engage in other activities, spend time with loved ones, or simply rest.</p><p className="text-lg">Breaks help you return to the platform with fresh perspective and renewed enjoyment. They prevent fantasy cricket from becoming monotonous or all-consuming. If you find it difficult to take breaks or feel anxious during them, this may indicate a need to reassess your relationship with the platform.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">9. Support and Resources</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">If you're struggling with gaming habits, seek support. Talk to friends, family, or mentors about your concerns. Consider professional counseling if gaming is significantly impacting your life. Many resources exist for managing recreational activities in healthy ways, even when money isn't involved.</p><p className="text-lg">Remember that seeking help is a sign of strength, not weakness. AYACHI is designed for enjoyment and education—if it's causing stress or problems, something needs to change. We encourage users to prioritize their well-being and reach out for support when needed.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">10. For Parents and Guardians</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">While AYACHI is restricted to users 18+, parents and guardians should be aware of fantasy sports platforms. If you discover a minor attempting to access our platform, please contact us immediately. Educate young people about age restrictions and the importance of responsible gaming habits for when they're old enough to participate.</p><p className="text-lg">For adult children or young adults in your care, encourage open conversations about gaming habits. Help them understand the importance of balance, time management, and maintaining perspective. Model healthy recreational habits yourself and create an environment where gaming is one of many enjoyable activities, not the primary focus.</p></CardContent></Card>
+
+            <Card><CardHeader><CardTitle className="text-2xl">11. Our Commitment</CardTitle></CardHeader><CardContent className="space-y-4"><p className="text-lg">AYACHI HEALTHCARE PRIVATE LIMITED is committed to promoting Responsible Gaming. We maintain a 100% free platform to eliminate financial pressure and risk. We enforce strict age (18+) and geographic restrictions. We provide educational content about healthy gaming habits. We encourage users to self-monitor and take breaks. We respond to concerns about problematic usage.</p><p className="text-lg">Our goal is to provide a positive, educational, and entertaining experience that enhances users' lives. We continuously evaluate our policies and features to support Responsible Gaming. If you have suggestions for how we can better promote healthy gaming habits, please contact us. Together, we can ensure AYACHI remains a positive force in the fantasy cricket community.</p></CardContent></Card>
+
+            <Card className="bg-primary/5"><CardHeader><CardTitle className="text-2xl">Need Help?</CardTitle></CardHeader><CardContent><p className="text-lg mb-4">If you have concerns about your gaming habits or need support:</p><div className="space-y-2"><p><strong>AYACHI HEALTHCARE PRIVATE LIMITED</strong></p><p><strong>Address:</strong> H. NO. 1/104, NEW JIA MAU, NEAR PARAG ATM, LUCKNOW, Uttar Pradesh, 226001</p><p className="mt-4">Remember: Your well-being is more important than any contest. Take care of yourself first.</p></div></CardContent></Card>
           </div>
         </div>
       </main>

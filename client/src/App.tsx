@@ -19,6 +19,7 @@ import Privacy from "./pages/Privacy";
 import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Disclaimer from "./pages/Disclaimer";
 import FAQ from "./pages/FAQ";
+import FairPlay from "./pages/FairPlay";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/responsible-gaming" component={ResponsibleGaming} />
+      <Route path="/fair-play" component={FairPlay} />
       <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/faq" component={FAQ} />
       <Route path="/404" component={NotFound} />

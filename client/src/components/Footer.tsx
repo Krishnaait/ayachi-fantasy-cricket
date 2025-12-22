@@ -60,6 +60,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/fair-play" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Fair Play
+                </Link>
+              </li>
+              <li>
                 <Link href="/disclaimer" className="text-muted-foreground hover:text-foreground transition-colors">
                   Disclaimer
                 </Link>
