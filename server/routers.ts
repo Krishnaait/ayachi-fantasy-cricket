@@ -1,11 +1,13 @@
 import { z } from "zod";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { systemRouter } from "./_core/systemRouter";
+import { dbInitRouter } from "./routers/db-init";
 import * as db from "./db";
 import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
   system: systemRouter,
+  db: dbInitRouter,
   
   auth: router({
     // Register new user
