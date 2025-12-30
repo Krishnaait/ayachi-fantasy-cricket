@@ -89,10 +89,11 @@ export const appRouter = router({
     create: protectedProcedure
       .input(z.object({
         teamName: z.string().min(3),
-        captain: z.string(),
-        viceCaptain: z.string(),
+        captainId: z.string(),
+        viceCaptainId: z.string(),
         players: z.array(z.string()),
-        matchId: z.string().optional(),
+        matchId: z.string(),
+        totalCreditsUsed: z.string(),
       }))
       .mutation(async ({ input, ctx }) => {
         const userId = parseInt(ctx.req.cookies?.ayachi_user_id || "0");
@@ -110,6 +111,20 @@ export const appRouter = router({
       }
       return await db.getUserTeams(userId);
     }),
+  }),
+
+  // Match management
+  matches: router({
+    list: publicProcedure.query(async () => {
+      const { getMatches } = await import("./lib/cricketApi");
+      return await getMatches();
+    }),
+    squad: publicProcedure
+      .input(z.object({ matchId: z.string() }))
+      .query(async ({ input }) => {
+        const { getSquad } = await import("./lib/cricketApi");
+        return await getSquad(input.matchId);
+      }),
   }),
 
   // Contest management

@@ -4,9 +4,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Trophy, Users, Shield, BookOpen, Target, Zap, Heart, CheckCircle2, Award, Lock } from "lucide-react";
+import MatchCard from "@/components/MatchCard";
+import { Trophy, Users, Shield, BookOpen, Target, Zap, Heart, CheckCircle2, Award, Lock, Loader2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 export default function Home() {
+  const { data: matches, isLoading } = trpc.matches.list.useQuery();
+
+  const liveMatches = matches?.filter(m => m.matchStarted && !m.matchEnded) || [];
+  const upcomingMatches = matches?.filter(m => !m.matchStarted) || [];
+  const completedMatches = matches?.filter(m => m.matchEnded) || [];
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -73,8 +80,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Mission */}
+      {/* Matches Sections */}
       <section className="py-20 px-4 bg-muted/30">
+        <div className="container">
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
+              <p className="text-muted-foreground">Fetching real-time matches...</p>
+            </div>
+          ) : (
+            <div className="space-y-20">
+              {/* Live Matches */}
+              {liveMatches.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse"></div>
+                    <h2 className="text-3xl font-bold">Live Matches</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {liveMatches.map(match => (
+                      <MatchCard key={match.id} match={match} type="live" />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Upcoming Matches */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <Trophy className="h-6 w-6 text-primary" />
+                  <h2 className="text-3xl font-bold">Upcoming Matches</h2>
+                </div>
+                {upcomingMatches.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {upcomingMatches.slice(0, 6).map(match => (
+                      <MatchCard key={match.id} match={match} type="upcoming" />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-muted-foreground text-center py-10">No upcoming matches scheduled.</p>
+                )}
+              </div>
+
+              {/* Completed Matches */}
+              {completedMatches.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <Award className="h-6 w-6 text-primary" />
+                    <h2 className="text-3xl font-bold">Recent Results</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {completedMatches.slice(0, 3).map(match => (
+                      <MatchCard key={match.id} match={match} type="completed" />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Our Mission */}
+      <section className="py-20 px-4">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">OUR GOALS</h2>

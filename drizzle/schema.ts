@@ -1,15 +1,9 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
  */
 export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
   id: int("id").autoincrement().primaryKey(),
   name: text("name").notNull(),
   email: varchar("email", { length: 320 }).notNull().unique(),
@@ -33,11 +27,11 @@ export type InsertUser = typeof users.$inferInsert;
 export const teams = mysqlTable("teams", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),
+  matchId: varchar("matchId", { length: 100 }).notNull(),
   teamName: varchar("teamName", { length: 100 }).notNull(),
-  captain: varchar("captain", { length: 100 }),
-  viceCaptain: varchar("viceCaptain", { length: 100 }),
-  players: text("players").notNull(), // JSON string of player IDs
-  matchId: varchar("matchId", { length: 100 }),
+  captainId: varchar("captainId", { length: 100 }).notNull(),
+  viceCaptainId: varchar("viceCaptainId", { length: 100 }).notNull(),
+  totalCreditsUsed: decimal("totalCreditsUsed", { precision: 5, scale: 2 }).default("0.00").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -45,32 +39,42 @@ export const teams = mysqlTable("teams", {
 export type Team = typeof teams.$inferSelect;
 export type InsertTeam = typeof teams.$inferInsert;
 
+// Team Players mapping table
+export const teamPlayers = mysqlTable("teamPlayers", {
+  id: int("id").autoincrement().primaryKey(),
+  teamId: int("teamId").notNull(),
+  playerId: varchar("playerId", { length: 100 }).notNull(),
+});
+
+export type TeamPlayer = typeof teamPlayers.$inferSelect;
+export type InsertTeamPlayer = typeof teamPlayers.$inferInsert;
+
 // Contests table
 export const contests = mysqlTable("contests", {
   id: int("id").autoincrement().primaryKey(),
-  contestName: varchar("contestName", { length: 200 }).notNull(),
   matchId: varchar("matchId", { length: 100 }).notNull(),
-  totalSpots: int("totalSpots").notNull(),
-  filledSpots: int("filledSpots").default(0).notNull(),
-  entryFee: int("entryFee").default(0).notNull(), // Always 0 for free-to-play
+  name: varchar("name", { length: 200 }).notNull(),
+  entryFee: int("entryFee").default(0).notNull(),
+  prizePool: int("prizePool").default(0).notNull(),
+  maxEntries: int("maxEntries").notNull(),
+  currentEntries: int("currentEntries").default(0).notNull(),
   status: mysqlEnum("status", ["upcoming", "live", "completed"]).default("upcoming").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type Contest = typeof contests.$inferSelect;
 export type InsertContest = typeof contests.$inferInsert;
 
 // User Contest Entries
-export const userContestEntries = mysqlTable("userContestEntries", {
+export const contestEntries = mysqlTable("contestEntries", {
   id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull(),
   contestId: int("contestId").notNull(),
+  userId: int("userId").notNull(),
   teamId: int("teamId").notNull(),
-  points: int("points").default(0).notNull(),
+  points: decimal("points", { precision: 10, scale: 2 }).default("0.00").notNull(),
   rank: int("rank"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
-export type UserContestEntry = typeof userContestEntries.$inferSelect;
-export type InsertUserContestEntry = typeof userContestEntries.$inferInsert;
+export type ContestEntry = typeof contestEntries.$inferSelect;
+export type InsertContestEntry = typeof contestEntries.$inferInsert;

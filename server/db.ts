@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, teams, contests, userContestEntries, Team, Contest, UserContestEntry } from "../drizzle/schema";
+import { users, teams, teamPlayers, contests, contestEntries, Team, Contest, ContestEntry } from "../drizzle/schema";
 import bcrypt from "bcryptjs";
 import type { ResultSetHeader } from "mysql2";
 
@@ -203,11 +203,12 @@ export async function resetPassword(token: string, newPassword: string): Promise
 // Team management functions
 export async function createTeam(teamData: {
   userId: number;
+  matchId: string;
   teamName: string;
-  captain: string;
-  viceCaptain: string;
+  captainId: string;
+  viceCaptainId: string;
   players: string[];
-  matchId?: string;
+  totalCreditsUsed: string;
 }): Promise<{ success: boolean; message: string; teamId?: number }> {
   const db = await getDb();
   if (!db) {
@@ -217,14 +218,24 @@ export async function createTeam(teamData: {
   try {
     const result = await db.insert(teams).values({
       userId: teamData.userId,
-      teamName: teamData.teamName,
-      captain: teamData.captain,
-      viceCaptain: teamData.viceCaptain,
-      players: JSON.stringify(teamData.players),
       matchId: teamData.matchId,
+      teamName: teamData.teamName,
+      captainId: teamData.captainId,
+      viceCaptainId: teamData.viceCaptainId,
+      totalCreditsUsed: teamData.totalCreditsUsed,
     }) as unknown as ResultSetHeader;
 
-    return { success: true, message: "Team created successfully", teamId: Number(result.insertId) };
+    const teamId = Number(result.insertId);
+
+    // Insert players into teamPlayers table
+    const playerValues = teamData.players.map(playerId => ({
+      teamId,
+      playerId,
+    }));
+
+    await db.insert(teamPlayers).values(playerValues);
+
+    return { success: true, message: "Team created successfully", teamId };
   } catch (error) {
     console.error("[Database] Failed to create team:", error);
     return { success: false, message: "Failed to create team" };
@@ -265,12 +276,32 @@ export async function joinContest(userId: number, contestId: number, teamId: num
   }
 
   try {
-    await db.insert(userContestEntries).values({
+    // Check if already joined
+    const existing = await db.select().from(contestEntries).where(
+      and(
+        eq(contestEntries.userId, userId),
+        eq(contestEntries.contestId, contestId)
+      )
+    ).limit(1);
+
+    if (existing.length > 0) {
+      return { success: false, message: "Already joined this contest" };
+    }
+
+    await db.insert(contestEntries).values({
       userId,
       contestId,
       teamId,
-      points: 0,
+      points: "0.00",
     });
+
+    // Update current entries count
+    const contest = await db.select().from(contests).where(eq(contests.id, contestId)).limit(1);
+    if (contest.length > 0) {
+      await db.update(contests).set({
+        currentEntries: contest[0].currentEntries + 1
+      }).where(eq(contests.id, contestId));
+    }
 
     return { success: true, message: "Joined contest successfully" };
   } catch (error) {
@@ -279,12 +310,12 @@ export async function joinContest(userId: number, contestId: number, teamId: num
   }
 }
 
-export async function getUserContestEntries(userId: number): Promise<UserContestEntry[]> {
+export async function getUserContestEntries(userId: number): Promise<ContestEntry[]> {
   const db = await getDb();
   if (!db) return [];
 
   try {
-    const result = await db.select().from(userContestEntries).where(eq(userContestEntries.userId, userId));
+    const result = await db.select().from(contestEntries).where(eq(contestEntries.userId, userId));
     return result;
   } catch (error) {
     console.error("[Database] Failed to get user contest entries:", error);
