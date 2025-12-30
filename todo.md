@@ -146,3 +146,14 @@
 
 ## Visual Editor Updates
 - [x] Change "Our Mission" heading to "OUR GOALS" on homepage
+
+
+## Contest Join Functionality
+- [ ] Update database schema to track contest entries
+- [ ] Create tRPC procedures for joining contests
+- [ ] Create tRPC procedures for fetching user's contest entries
+- [ ] Build contest listing page with join buttons
+- [ ] Create "My Contests" page to display user's entries
+- [ ] Add validation to prevent duplicate entries
+- [ ] Display team details in contest entries
+- [ ] Test complete join contest flow
