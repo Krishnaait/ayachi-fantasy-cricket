@@ -9,12 +9,15 @@ import { Trophy, Users, Clock } from "lucide-react";
 
 export default function Contests() {
   const { isAuthenticated } = useAuth();
+  const utils = trpc.useUtils();
   const { data: contests, isLoading } = trpc.contests.list.useQuery();
   const { data: myTeams } = trpc.teams.myTeams.useQuery(undefined, { enabled: isAuthenticated });
   
   const joinContestMutation = trpc.contests.join.useMutation({
     onSuccess: () => {
       toast.success("Successfully joined contest!");
+      utils.contests.list.invalidate();
+      utils.contests.myEntries.invalidate();
     },
     onError: (error) => {
       toast.error("Failed to join contest: " + error.message);

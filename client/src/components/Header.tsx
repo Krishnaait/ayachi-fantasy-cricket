@@ -34,6 +34,9 @@ export default function Header() {
           <Link href="/contact" className="transition-colors hover:text-primary">
             Contact
           </Link>
+          <Link href="/faq" className="transition-colors hover:text-primary">
+            FAQ
+          </Link>
           {isAuthenticated && (
             <>
               <Link href="/dashboard" className="transition-colors hover:text-primary">
@@ -98,6 +101,9 @@ export default function Header() {
               </Link>
               <Link href="/contact">
                 <DropdownMenuItem>Contact</DropdownMenuItem>
+              </Link>
+              <Link href="/faq">
+                <DropdownMenuItem>FAQ</DropdownMenuItem>
               </Link>
               {isAuthenticated && (
                 <>

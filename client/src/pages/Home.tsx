@@ -12,53 +12,61 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-primary/20 via-background to-accent/20">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl font-bold">
+      <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-b from-primary/5 to-background">
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-primary/10 text-primary mb-2">
+                <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
+                100% Free to Play Cricket Fantasy
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
                 Welcome to <span className="text-primary">AYACHI</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Fantasy Sport - 100% Free to Play Cricket Fantasy Platform
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                The ultimate skill-based platform for cricket enthusiasts.
               </p>
-              <p className="text-lg">
+              <p className="text-lg text-muted-foreground">
                 Build your dream cricket team, compete in contests, and showcase your cricket knowledge. 
                 No real money involved - pure skill-based gaming for education and entertainment!
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/register">
-                  <Button size="lg" className="text-lg px-8">
+                  <Button size="lg" className="text-lg px-8 h-14">
                     Get Started Free
                   </Button>
                 </Link>
                 <Link href="/how-to-play">
-                  <Button size="lg" variant="outline" className="text-lg px-8">
+                  <Button size="lg" variant="outline" className="text-lg px-8 h-14">
                     How to Play
                   </Button>
                 </Link>
               </div>
-              {/* Trust Badges */}
-              <div className="flex flex-wrap items-center gap-6 pt-6 border-t">
-                <div className="flex items-center gap-2">
-                  <img src="/icon_18plus.png" alt="18+" className="h-16 w-16 object-contain" />
-                  <span className="text-sm font-medium">18+ Only</span>
+              
+              <div className="flex flex-wrap gap-8 pt-8 border-t">
+                <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
+                  <img src="/icon_18plus.png" alt="18+" className="h-10 w-10 object-contain" />
+                  <span className="font-medium">18+ Only</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-16 w-16 object-contain" />
-                  <span className="text-sm font-medium">Safe & Secure</span>
+                <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
+                  <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-10 w-10 object-contain" />
+                  <span className="font-medium">Safe & Secure</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <img src="/icon_educational.png" alt="Educational" className="h-16 w-16 object-contain" />
-                  <span className="text-sm font-medium">Educational & Entertainment</span>
+                <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
+                  <img src="/icon_educational.png" alt="Educational" className="h-10 w-10 object-contain" />
+                  <span className="font-medium">Educational</span>
                 </div>
               </div>
             </div>
             <div className="relative">
+              <div className="absolute -inset-4 bg-primary/20 rounded-full blur-3xl"></div>
               <img 
                 src="/images/hero.png" 
                 alt="Cricket Fantasy" 
-                className="rounded-lg shadow-2xl"
+                className="relative rounded-2xl shadow-2xl border border-border"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80&w=1000";
+                }}
               />
             </div>
           </div>

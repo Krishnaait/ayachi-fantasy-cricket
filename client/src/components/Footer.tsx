@@ -23,6 +23,11 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <Link href="/how-to-play" className="text-muted-foreground hover:text-foreground transition-colors">
                   How to Play
                 </Link>

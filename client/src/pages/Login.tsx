@@ -22,10 +22,8 @@ export default function Login() {
         toast.success("Login successful!");
         // Invalidate auth query to refetch user data
         await queryClient.invalidateQueries({ queryKey: [['auth', 'me']] });
-        // Small delay to ensure cookie is set and query refetched
-        setTimeout(() => {
-          setLocation("/dashboard");
-        }, 200);
+        // Redirect immediately to dashboard
+        setLocation("/dashboard");
       } else {
         toast.error(data.message);
       }
