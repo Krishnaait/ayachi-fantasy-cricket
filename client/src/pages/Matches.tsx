@@ -5,12 +5,19 @@ import { trpc } from "@/lib/trpc";
 import MatchCard from "@/components/MatchCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Calendar, PlayCircle, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Matches() {
-  co  const { data: matches, isLoading } = trpc.matches.list.useQuery(undefined, {
+  const { data: matches, isLoading, refetch } = trpc.matches.list.useQuery(undefined, {
     refetchInterval: 15000,
-  });ry();
+  });
   const [activeTab, setActiveTab] = useState("live");
+  const [selectedDate, setSelectedDate] = useState<string>("");
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Auto-refresh live matches every 15 seconds
   useEffect(() => {
@@ -20,11 +27,6 @@ export default function Matches() {
     return () => clearInterval(interval);
   }, [refetch]);
 
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);  const [selectedDate, setSelectedDate] = useState<string>("");
-
   const filteredMatches = matches?.filter(m => {
     if (!selectedDate) return true;
     const matchDate = new Date(m.date).toISOString().split('T')[0];
@@ -33,7 +35,9 @@ export default function Matches() {
 
   const liveMatches = filteredMatches.filter(m => m.matchStarted && !m.matchEnded);
   const upcomingMatches = filteredMatches.filter(m => !m.matchStarted);
-  const completedMatches = filteredMatches.filter(m => m.matchEnded);if (isLoading) {
+  const completedMatches = filteredMatches.filter(m => m.matchEnded);
+
+  if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -48,7 +52,8 @@ export default function Matches() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      <main className="flex-1 container py-12 px-4 max-w-7xl         <div className="mb-10 text-center">
+      <main className="flex-1 container py-12 px-4 max-w-7xl">
+        <div className="mb-10 text-center">
           <h1 className="text-4xl font-black text-gray-900 mb-4">Cricket Matches</h1>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
             Browse all live, upcoming, and completed matches. Join contests and track real-time scores.
@@ -75,7 +80,9 @@ export default function Matches() {
               </Button>
             )}
           </div>
-        </div>     <Tabs defaultValue="live" className="w-full" onValueChange={setActiveTab}>
+        </div>
+
+        <Tabs defaultValue="live" className="w-full" onValueChange={setActiveTab}>
           <div className="flex justify-center mb-12">
             <TabsList className="bg-white border shadow-sm p-1 h-14 rounded-2xl">
               <TabsTrigger value="live" className="rounded-xl px-8 data-[state=active]:bg-red-600 data-[state=active]:text-white flex items-center gap-2">
