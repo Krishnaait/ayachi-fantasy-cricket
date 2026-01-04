@@ -123,20 +123,39 @@ export const appRouter = router({
       // Fetch current matches (Live + Recent)
       const current = await getCurrentMatches();
       
-      // Fetch more matches from the list to ensure we get upcoming ones
-      const list1 = await getMatchesList(0);
-      const list2 = await getMatchesList(25);
-      const list3 = await getMatchesList(50);
+      // Fetch multiple pages of matches to find upcoming ones
+      // We scan up to 4 pages (100 matches) to ensure we find future fixtures
+      const pages = [0, 25, 50, 75];
+      const matchesLists = await Promise.all(pages.map(offset => getMatchesList(offset)));
       
-      // Merge and remove duplicates by ID
-      const allMatches = [...current, ...list1, ...list2, ...list3];
-      const uniqueMatches = Array.from(new Map(allMatches.map(m => [m.id, m])).values());
+      // Merge all matches and remove duplicates
+      const allMatches = [...current];
+      const existingIds = new Set(allMatches.map(m => m.id));
       
-      // Sort by date (Upcoming first, then Live, then Completed)
-      return uniqueMatches.sort((a, b) => {
-        const dateA = new Date(a.date).getTime();
-        const dateB = new Date(b.date).getTime();
-        return dateA - dateB;
+      for (const list of matchesLists) {
+        for (const match of list) {
+          if (!existingIds.has(match.id)) {
+            allMatches.push(match);
+            existingIds.add(match.id);
+          }
+        }
+      }
+      
+      // Sort matches: Live first, then Upcoming (by date), then Completed
+      return allMatches.sort((a, b) => {
+        // Live matches first
+        if (a.matchStarted && !a.matchEnded) return -1;
+        if (b.matchStarted && !b.matchEnded) return 1;
+        
+        // Upcoming matches next (sorted by date)
+        if (!a.matchStarted && !b.matchStarted) {
+          return new Date(a.dateTimeGMT).getTime() - new Date(b.dateTimeGMT).getTime();
+        }
+        if (!a.matchStarted) return -1;
+        if (!b.matchStarted) return 1;
+        
+        // Completed matches last
+        return new Date(b.dateTimeGMT).getTime() - new Date(a.dateTimeGMT).getTime();
       });
     }),
     all: publicProcedure
