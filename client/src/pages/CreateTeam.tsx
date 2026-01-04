@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { Loader2, User, Star, ShieldCheck, Info } from "lucide-react";
+import { Loader2, User, Star, ShieldCheck, Info, CheckCircle2, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
@@ -54,7 +54,8 @@ export default function CreateTeam() {
     );
   }
 
-  const players = squadData?.data || [];
+  // The API returns the squad directly in the data field or within a nested data field
+  const players = squadData || [];
   const totalCredits = 100;
   const usedCredits = selectedPlayers.length * 9; // Mock credits since API doesn't provide them
 
@@ -121,39 +122,69 @@ export default function CreateTeam() {
               </CardHeader>
               <CardContent className="p-0">
                 <div className="divide-y">
-                  {players.map((player: any) => {
-                    const isSelected = selectedPlayers.find(p => p.id === player.id);
-                    return (
-                      <div 
-                        key={player.id} 
-                        className={`flex items-center justify-between p-4 hover:bg-muted/50 cursor-pointer transition-colors ${isSelected ? 'bg-primary/5' : ''}`}
-                        onClick={() => togglePlayer(player)}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
-                            {player.img ? <img src={player.img} alt={player.name} className="w-full h-full object-cover" /> : <User className="h-6 w-6 text-muted-foreground" />}
+                  {players.length > 0 ? (
+                    players.map((player: any) => {
+                      const isSelected = selectedPlayers.find(p => p.id === player.id);
+                      return (
+                        <div 
+                          key={player.id} 
+                          className={`flex items-center justify-between p-4 hover:bg-muted/50 cursor-pointer transition-colors ${isSelected ? 'bg-primary/5 border-l-4 border-l-primary' : 'border-l-4 border-l-transparent'}`}
+                          onClick={() => togglePlayer(player)}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="relative">
+                              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center overflow-hidden border-2 border-background shadow-sm">
+                                {player.playerImg ? (
+                                  <img src={player.playerImg} alt={player.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <User className="h-6 w-6 text-muted-foreground" />
+                                )}
+                              </div>
+                              {isSelected && (
+                                <div className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full p-0.5 shadow-sm">
+                                  <CheckCircle2 className="h-3 w-3" />
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <div className="font-bold text-sm md:text-base">{player.name}</div>
+                              <div className="flex items-center gap-2">
+                                <Badge variant="outline" className="text-[10px] py-0 h-4 uppercase font-bold bg-muted/50">
+                                  {player.role || 'Player'}
+                                </Badge>
+                                <span className="text-[10px] text-muted-foreground">{player.country}</span>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="font-bold">{player.name}</div>
-                            <div className="text-xs text-muted-foreground uppercase">{player.role || 'Player'}</div>
+                          <div className="flex items-center gap-4 md:gap-8">
+                            <div className="text-right hidden sm:block">
+                              <div className="font-black text-primary">9.0</div>
+                              <div className="text-[9px] text-muted-foreground uppercase font-bold">Credits</div>
+                            </div>
+                            <Button 
+                              variant={isSelected ? "destructive" : "outline"} 
+                              size="sm"
+                              className={`w-20 font-bold transition-all ${isSelected ? 'shadow-inner' : 'shadow-sm hover:bg-primary hover:text-primary-foreground'}`}
+                            >
+                              {isSelected ? "Remove" : "Add"}
+                            </Button>
                           </div>
                         </div>
-                        <div className="flex items-center gap-6">
-                          <div className="text-right">
-                            <div className="font-bold">9.0</div>
-                            <div className="text-[10px] text-muted-foreground uppercase">Credits</div>
-                          </div>
-                          <Button 
-                            variant={isSelected ? "destructive" : "outline"} 
-                            size="sm"
-                            className="w-20"
-                          >
-                            {isSelected ? "Remove" : "Add"}
-                          </Button>
-                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="p-20 text-center space-y-4">
+                      <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto">
+                        <Users className="h-10 w-10 text-muted-foreground/50" />
                       </div>
-                    );
-                  })}
+                      <div className="space-y-1">
+                        <h3 className="font-bold text-lg">Squad Not Available</h3>
+                        <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+                          The official squad for this match hasn't been announced yet. Please check back closer to the match start time.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
