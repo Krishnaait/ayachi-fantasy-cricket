@@ -147,8 +147,12 @@ export const appRouter = router({
       // Sort matches: Live first, then Upcoming (by date), then Completed
       const now = new Date();
       const todayStr = now.toISOString().split('T')[0];
+      const jan1_2026 = "2026-01-01";
 
-      return allMatches.sort((a, b) => {
+      // Filter out matches before Jan 1, 2026
+      const filteredMatches = allMatches.filter(m => m.date >= jan1_2026);
+
+      return filteredMatches.sort((a, b) => {
         // Live matches first (only if they are actually from today or later)
         const aIsLive = a.matchStarted && !a.matchEnded && a.date >= todayStr;
         const bIsLive = b.matchStarted && !b.matchEnded && b.date >= todayStr;
@@ -156,7 +160,7 @@ export const appRouter = router({
         if (aIsLive && !bIsLive) return -1;
         if (!aIsLive && bIsLive) return 1;
         
-        // Upcoming matches next (sorted by date)
+        // Upcoming matches next (sorted by date ascending)
         const aIsUpcoming = !a.matchStarted && a.date >= todayStr;
         const bIsUpcoming = !b.matchStarted && b.date >= todayStr;
 
@@ -166,7 +170,7 @@ export const appRouter = router({
         if (aIsUpcoming) return -1;
         if (bIsUpcoming) return 1;
         
-        // Completed matches last (sorted by date descending)
+        // Completed matches last (sorted by date descending - most recent first)
         return new Date(b.dateTimeGMT).getTime() - new Date(a.dateTimeGMT).getTime();
       });
     }),

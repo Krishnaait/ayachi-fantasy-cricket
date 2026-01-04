@@ -35,10 +35,11 @@ export default function Matches() {
 
   const now = new Date();
   const todayStr = now.toISOString().split('T')[0];
+  const jan1_2026 = "2026-01-01";
   
   const liveMatches = filteredMatches.filter(m => m.matchStarted && !m.matchEnded && m.date >= todayStr);
   const upcomingMatches = filteredMatches.filter(m => !m.matchStarted && m.date >= todayStr);
-  const completedMatches = filteredMatches.filter(m => m.matchEnded || (m.matchStarted && m.date < todayStr));
+  const completedMatches = filteredMatches.filter(m => (m.matchEnded || (m.matchStarted && m.date < todayStr)) && m.date >= jan1_2026);
 
   if (isLoading) {
     return (
