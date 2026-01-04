@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Calendar, MapPin, Trophy } from "lucide-react";
+import { Calendar, MapPin, Trophy, Clock } from "lucide-react";
 import { formatToIST } from "@/lib/utils";
 
 interface MatchCardProps {
@@ -22,6 +23,37 @@ interface MatchCardProps {
 }
 
 export default function MatchCard({ match, type }: MatchCardProps) {
+  const [timeLeft, setTimeLeft] = useState<string>("");
+
+  useEffect(() => {
+    if (type !== 'upcoming') return;
+
+    const calculateTimeLeft = () => {
+      const targetDate = new Date(match.dateTimeGMT || match.date).getTime();
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        setTimeLeft("Started");
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / 1000 / 60) % 60);
+
+      if (days > 0) {
+        setTimeLeft(`Starts in ${days} day${days > 1 ? 's' : ''}`);
+      } else {
+        setTimeLeft(`Starts in ${hours}h ${minutes}m`);
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 60000);
+    return () => clearInterval(timer);
+  }, [match.dateTimeGMT, match.date, type]);
+
   const team1 = match.teamInfo?.[0] || { 
     name: match.teams?.[0] || "TBC", 
     shortname: (match.teams?.[0] || "TBC").substring(0, 3).toUpperCase(), 
@@ -78,6 +110,12 @@ export default function MatchCard({ match, type }: MatchCardProps) {
         </div>
 
         <div className="space-y-2 pt-2 border-t border-border/50">
+          {type === 'upcoming' && timeLeft && (
+            <div className="flex items-center gap-2 text-xs font-bold text-green-600 mb-1">
+              <Clock className="h-3 w-3" />
+              <span>{timeLeft}</span>
+            </div>
+          )}
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" />
             <span>{formatToIST(match.dateTimeGMT || match.date)}</span>

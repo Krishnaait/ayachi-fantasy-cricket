@@ -127,8 +127,8 @@ export const appRouter = router({
       const current = await getCurrentMatches();
       
       // Fetch multiple pages of matches to find upcoming ones
-      // We scan up to 8 pages (200 matches) to ensure we find all match types (Test, ODI, T20)
-      const pages = [0, 25, 50, 75, 100, 125, 150, 175];
+      // We scan up to 20 pages (500 matches) to ensure we find all match types (Test, ODI, T20, Domestic, International)
+      const pages = Array.from({ length: 20 }, (_, i) => i * 25);
       const matchesLists = await Promise.all(pages.map(offset => getMatchesList(offset)));
       
       // Merge all matches and remove duplicates
@@ -157,13 +157,16 @@ export const appRouter = router({
         if (!aIsLive && bIsLive) return 1;
         
         // Upcoming matches next (sorted by date)
-        if (!a.matchStarted && !b.matchStarted) {
+        const aIsUpcoming = !a.matchStarted && a.date >= todayStr;
+        const bIsUpcoming = !b.matchStarted && b.date >= todayStr;
+
+        if (aIsUpcoming && bIsUpcoming) {
           return new Date(a.dateTimeGMT).getTime() - new Date(b.dateTimeGMT).getTime();
         }
-        if (!a.matchStarted) return -1;
-        if (!b.matchStarted) return 1;
+        if (aIsUpcoming) return -1;
+        if (bIsUpcoming) return 1;
         
-        // Completed matches last
+        // Completed matches last (sorted by date descending)
         return new Date(b.dateTimeGMT).getTime() - new Date(a.dateTimeGMT).getTime();
       });
     }),
