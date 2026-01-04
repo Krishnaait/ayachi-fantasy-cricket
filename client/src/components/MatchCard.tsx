@@ -89,15 +89,15 @@ export default function MatchCard({ match, type }: MatchCardProps) {
 
         <div className="pt-2">
           {type === 'upcoming' ? (
-            <Link href={`/dashboard/matches/${match.id}/create-team`}>
+            <Link href={`/create-team/${match.id}`}>
               <Button className="w-full" size="sm">Create Team</Button>
             </Link>
           ) : type === 'live' ? (
-            <Link href={`/dashboard/live-scores/${match.id}`}>
+            <Link href={`/live-score/${match.id}`}>
               <Button className="w-full" variant="outline" size="sm">View Live Score</Button>
             </Link>
           ) : (
-            <Link href={`/dashboard/matches/${match.id}/results`}>
+            <Link href={`/results/${match.id}`}>
               <Button className="w-full" variant="ghost" size="sm">View Results</Button>
             </Link>
           )}

@@ -31,10 +31,10 @@ function Router() {
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/create-team" component={CreateTeam} />
+      <Route path="/create-team/:id" component={CreateTeam} />
       <Route path="/contests" component={Contests} />
-      <Route path="/dashboard/live-scores/:id" component={LiveScore} />
-      <Route path="/dashboard/matches/:id/results" component={Results} />
+      <Route path="/live-score/:id" component={LiveScore} />
+      <Route path="/results/:id" component={Results} />
       <Route path="/how-to-play" component={HowToPlay} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
