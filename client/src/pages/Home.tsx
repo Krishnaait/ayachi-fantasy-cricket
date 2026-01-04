@@ -13,9 +13,25 @@ export default function Home() {
     refetchInterval: 15000, // Refresh every 15 seconds for real-time updates
   });
 
-  const liveMatches = matches?.filter(m => m.matchStarted && !m.matchEnded) || [];
-  const upcomingMatches = matches?.filter(m => !m.matchStarted) || [];
-  const completedMatches = matches?.filter(m => m.matchEnded) || [];
+  // Filter matches based on real-time status and date
+  const now = new Date();
+  
+  const liveMatches = matches?.filter(m => {
+    // A match is truly live if it has started, not ended, and is happening today
+    const matchDate = new Date(m.dateTimeGMT);
+    const isToday = matchDate.toDateString() === now.toDateString();
+    return m.matchStarted && !m.matchEnded && isToday;
+  }) || [];
+
+  const upcomingMatches = matches?.filter(m => {
+    // Upcoming matches are those that haven't started yet
+    return !m.matchStarted;
+  }) || [];
+
+  const completedMatches = matches?.filter(m => {
+    // Completed matches are those that have ended
+    return m.matchEnded;
+  }) || [];
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
