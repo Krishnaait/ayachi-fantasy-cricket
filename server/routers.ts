@@ -4,6 +4,9 @@ import { systemRouter } from "./_core/systemRouter";
 import { dbInitRouter } from "./routers/db-init";
 import * as db from "./db";
 import { TRPCError } from "@trpc/server";
+import { desc, sql, eq } from "drizzle-orm";
+import { users, contestEntries } from "../drizzle/schema";
+import { getDb } from "./db";
 
 export const appRouter = router({
   system: systemRouter,
@@ -188,6 +191,15 @@ export const appRouter = router({
         const { getFantasyMatchPoints } = await import("./lib/cricketApi");
         return await getFantasyMatchPoints(input.id);
       }),
+    
+    // Trigger points calculation for a match
+    calculatePoints: protectedProcedure
+      .input(z.object({ id: z.string() }))
+      .mutation(async ({ input }) => {
+        const { calculatePointsForMatch } = await import("./lib/pointsEngine");
+        await calculatePointsForMatch(input.id);
+        return { success: true };
+      }),
   }),
 
   // Series management
@@ -252,6 +264,28 @@ export const appRouter = router({
       return await db.getUserContestEntries(userId);
     }),
   }),
+
+  // Global Leaderboard
+  getGlobalLeaderboard: publicProcedure
+    .query(async () => {
+      const database = await getDb();
+      if (!database) return [];
+      
+      // Aggregate points by user
+      const results = await database.select({
+        userId: users.id,
+        userName: users.name,
+        totalPoints: sql<string>`SUM(${contestEntries.points})`,
+        contestsJoined: sql<number>`COUNT(${contestEntries.id})`
+      })
+      .from(users)
+      .innerJoin(contestEntries, eq(users.id, contestEntries.userId))
+      .groupBy(users.id)
+      .orderBy(desc(sql`SUM(${contestEntries.points})`))
+      .limit(50);
+      
+      return results;
+    }),
 });
 
 export type AppRouter = typeof appRouter;

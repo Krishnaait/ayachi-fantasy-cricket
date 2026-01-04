@@ -13,6 +13,7 @@ import CreateTeam from "./pages/CreateTeam";
 import Contests from "./pages/Contests";
 import LiveScore from "./pages/LiveScore";
 import Results from "./pages/Results";
+import Leaderboard from "./pages/Leaderboard";
 import HowToPlay from "./pages/HowToPlay";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/contests" component={Contests} />
       <Route path="/live-score/:id" component={LiveScore} />
       <Route path="/results/:id" component={Results} />
+      <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/how-to-play" component={HowToPlay} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />

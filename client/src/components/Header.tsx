@@ -45,6 +45,9 @@ export default function Header() {
               <Link href="/contests" className="transition-colors hover:text-primary">
                 Contests
               </Link>
+              <Link href="/leaderboard" className="transition-colors hover:text-primary">
+                Leaderboard
+              </Link>
             </>
           )}
         </nav>
@@ -112,6 +115,9 @@ export default function Header() {
                   </Link>
                   <Link href="/contests">
                     <DropdownMenuItem>Contests</DropdownMenuItem>
+                  </Link>
+                  <Link href="/leaderboard">
+                    <DropdownMenuItem>Leaderboard</DropdownMenuItem>
                   </Link>
                   <DropdownMenuItem onClick={logout}>
                     <LogOut className="mr-2 h-4 w-4" />
