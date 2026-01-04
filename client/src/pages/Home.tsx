@@ -16,21 +16,21 @@ export default function Home() {
   // Filter matches based on real-time status and date
   const now = new Date();
   
+  const todayStr = now.toISOString().split('T')[0];
+  
   const liveMatches = matches?.filter(m => {
-    // A match is truly live if it has started, not ended, and is happening today
-    const matchDate = new Date(m.dateTimeGMT);
-    const isToday = matchDate.toDateString() === now.toDateString();
-    return m.matchStarted && !m.matchEnded && isToday;
+    // A match is truly live if it has started, not ended, and is from today or later
+    return m.matchStarted && !m.matchEnded && m.date >= todayStr;
   }) || [];
 
   const upcomingMatches = matches?.filter(m => {
-    // Upcoming matches are those that haven't started yet
-    return !m.matchStarted;
+    // Upcoming matches are those that haven't started yet and are from today or later
+    return !m.matchStarted && m.date >= todayStr;
   }) || [];
 
   const completedMatches = matches?.filter(m => {
-    // Completed matches are those that have ended
-    return m.matchEnded;
+    // Completed matches are those that have ended OR are stale live matches from the past
+    return m.matchEnded || (m.matchStarted && m.date < todayStr);
   }) || [];
   return (
     <div className="min-h-screen flex flex-col">

@@ -145,10 +145,16 @@ export const appRouter = router({
       }
       
       // Sort matches: Live first, then Upcoming (by date), then Completed
+      const now = new Date();
+      const todayStr = now.toISOString().split('T')[0];
+
       return allMatches.sort((a, b) => {
-        // Live matches first
-        if (a.matchStarted && !a.matchEnded) return -1;
-        if (b.matchStarted && !b.matchEnded) return 1;
+        // Live matches first (only if they are actually from today or later)
+        const aIsLive = a.matchStarted && !a.matchEnded && a.date >= todayStr;
+        const bIsLive = b.matchStarted && !b.matchEnded && b.date >= todayStr;
+        
+        if (aIsLive && !bIsLive) return -1;
+        if (!aIsLive && bIsLive) return 1;
         
         // Upcoming matches next (sorted by date)
         if (!a.matchStarted && !b.matchStarted) {

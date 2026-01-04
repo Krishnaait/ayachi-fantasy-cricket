@@ -33,9 +33,12 @@ export default function Matches() {
     return matchDate === selectedDate;
   }) || [];
 
-  const liveMatches = filteredMatches.filter(m => m.matchStarted && !m.matchEnded);
-  const upcomingMatches = filteredMatches.filter(m => !m.matchStarted);
-  const completedMatches = filteredMatches.filter(m => m.matchEnded);
+  const now = new Date();
+  const todayStr = now.toISOString().split('T')[0];
+  
+  const liveMatches = filteredMatches.filter(m => m.matchStarted && !m.matchEnded && m.date >= todayStr);
+  const upcomingMatches = filteredMatches.filter(m => !m.matchStarted && m.date >= todayStr);
+  const completedMatches = filteredMatches.filter(m => m.matchEnded || (m.matchStarted && m.date < todayStr));
 
   if (isLoading) {
     return (
