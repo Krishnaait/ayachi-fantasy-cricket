@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Calendar, MapPin, Trophy } from "lucide-react";
+import { formatToIST } from "@/lib/utils";
 
 interface MatchCardProps {
   match: {
@@ -72,7 +73,7 @@ export default function MatchCard({ match, type }: MatchCardProps) {
         <div className="space-y-2 pt-2 border-t border-border/50">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" />
-            <span>{new Date(match.date).toLocaleDateString()}</span>
+            <span>{formatToIST(match.date)}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <MapPin className="h-3 w-3" />

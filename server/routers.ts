@@ -118,8 +118,15 @@ export const appRouter = router({
   // Match management
   matches: router({
     list: publicProcedure.query(async () => {
-      const { getCurrentMatches } = await import("./lib/cricketApi");
-      return await getCurrentMatches();
+      const { getCurrentMatches, getMatchesList } = await import("./lib/cricketApi");
+      const current = await getCurrentMatches();
+      const list = await getMatchesList(0);
+      
+      // Merge and remove duplicates by ID
+      const allMatches = [...current, ...list];
+      const uniqueMatches = Array.from(new Map(allMatches.map(m => [m.id, m])).values());
+      
+      return uniqueMatches;
     }),
     all: publicProcedure
       .input(z.object({ offset: z.number().default(0) }))
