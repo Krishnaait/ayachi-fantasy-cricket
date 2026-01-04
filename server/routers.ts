@@ -119,14 +119,23 @@ export const appRouter = router({
   matches: router({
     list: publicProcedure.query(async () => {
       const { getCurrentMatches, getMatchesList } = await import("./lib/cricketApi");
+      
+      // Fetch current matches (Live + Recent)
       const current = await getCurrentMatches();
-      const list = await getMatchesList(0);
+      
+      // Fetch upcoming matches (using offset to get more if needed)
+      const upcoming = await getMatchesList(0);
       
       // Merge and remove duplicates by ID
-      const allMatches = [...current, ...list];
+      const allMatches = [...current, ...upcoming];
       const uniqueMatches = Array.from(new Map(allMatches.map(m => [m.id, m])).values());
       
-      return uniqueMatches;
+      // Sort by date (Upcoming first, then Live, then Completed)
+      return uniqueMatches.sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return dateA - dateB;
+      });
     }),
     all: publicProcedure
       .input(z.object({ offset: z.number().default(0) }))

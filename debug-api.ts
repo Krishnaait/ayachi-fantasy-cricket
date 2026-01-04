@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_KEY = "1a822521-d7e0-46ff-98d3-3e51020863f3";
-const BASE_URL = "https://api.cricketdata.org/v1";
+const BASE_URL = "https://api.cricapi.com/v1";
 
 async function debugApi() {
   console.log("Testing CricketData API with key:", API_KEY);
