@@ -11,14 +11,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center gap-3 group">
-              <img src="/ayachi_logo.png" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
+              <img src="/ayachi_logo.svg" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
               <span className="text-2xl font-black tracking-tighter gaming-gradient-text">AYACHI</span>
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
             <div className="flex space-x-4">
-              <img src="/icon_18plus.png" alt="18+" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
-              <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
-              <img src="/icon_educational.png" alt="Educational" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/icon_18plus.svg" alt="18+" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/icon_safe_secure.svg" alt="Safe & Secure" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/icon_educational.svg" alt="Educational" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
             </div>
           </div>
 

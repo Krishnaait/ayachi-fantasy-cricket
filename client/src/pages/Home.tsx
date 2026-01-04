@@ -88,15 +88,15 @@ export default function Home() {
               
               <div className="flex flex-wrap gap-8 pt-8 border-t">
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_18plus.png" alt="18+" className="h-10 w-10 object-contain" />
+                  <img src="/icon_18plus.svg" alt="18+" className="h-10 w-10 object-contain" />
                   <span className="font-medium">18+ Only</span>
                 </div>
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-10 w-10 object-contain" />
+                  <img src="/icon_safe_secure.svg" alt="Safe & Secure" className="h-10 w-10 object-contain" />
                   <span className="font-medium">Safe & Secure</span>
                 </div>
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_educational.png" alt="Educational" className="h-10 w-10 object-contain" />
+                  <img src="/icon_educational.svg" alt="Educational" className="h-10 w-10 object-contain" />
                   <span className="font-medium">Educational</span>
                 </div>
               </div>
@@ -104,7 +104,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-3xl"></div>
               <img 
-                src="/hero_image.png" 
+                src="/hero_image.svg" 
                 alt="Cricket Fantasy" 
                 className="relative rounded-2xl shadow-2xl border border-border"
               />
@@ -274,7 +274,7 @@ export default function Home() {
 	          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 	            <Card className="overflow-hidden">
 	              <img 
-	                src="/team_selection.png" 
+	                src="/team_selection.svg" 
 	                alt="Team Selection" 
 	                className="w-full h-auto object-cover"
 	              />
@@ -287,7 +287,7 @@ export default function Home() {
 	            </Card>
 	            <Card className="overflow-hidden">
 	              <img 
-	                src="/prize_pool.png" 
+	                src="/prize_pool.svg" 
 	                alt="Compete for the Prize Pool" 
 	                className="w-full h-auto object-cover"
 	              />
