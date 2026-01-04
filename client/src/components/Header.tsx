@@ -52,32 +52,39 @@ export default function Header() {
           {!isAuthenticated ? (
             <>
               <Link href="/login">
-                <Button variant="ghost" className="hidden md:inline-flex">
+                <Button variant="ghost" className="hidden md:inline-flex font-black uppercase tracking-widest text-xs">
                   Login
                 </Button>
               </Link>
               <Link href="/register">
-                <Button className="hidden md:inline-flex gaming-button font-black uppercase tracking-widest bg-primary text-black">Register</Button>
+                <Button className="hidden md:inline-flex gaming-button font-black uppercase tracking-widest text-xs bg-primary text-black">Register</Button>
               </Link>
             </>
           ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hidden md:flex">
-                  <User className="h-5 w-5" />
+            <div className="flex items-center gap-4">
+              <Link href="/dashboard">
+                <Button className="hidden md:inline-flex gaming-button font-black uppercase tracking-widest text-xs bg-primary text-black">
+                  Dashboard
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem disabled>
-                  <User className="mr-2 h-4 w-4" />
-                  {user?.name}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={logout}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="hidden md:flex border border-white/10 rounded-xl">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-card border-white/10">
+                  <DropdownMenuItem disabled className="font-black uppercase tracking-widest text-[10px] text-primary">
+                    <User className="mr-2 h-4 w-4" />
+                    {user?.name}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout} className="font-black uppercase tracking-widest text-[10px] text-destructive cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           )}
 
           {/* Mobile Menu */}

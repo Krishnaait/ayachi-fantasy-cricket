@@ -19,11 +19,11 @@ export default function Matches() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Auto-refresh live matches every 15 seconds
+  // Auto-refresh matches every 30 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       refetch();
-    }, 15000);
+    }, 30000);
     return () => clearInterval(interval);
   }, [refetch]);
 

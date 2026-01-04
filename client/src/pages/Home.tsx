@@ -7,11 +7,21 @@ import Footer from "@/components/Footer";
 import MatchCard from "@/components/MatchCard";
 import { Trophy, Users, Shield, BookOpen, Target, Zap, Heart, CheckCircle2, Award, Lock, Loader2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Home() {
-  const { data: matches, isLoading } = trpc.matches.list.useQuery(undefined, {
+  const { isAuthenticated } = useAuth();
+  const { data: matches, isLoading, refetch } = trpc.matches.list.useQuery(undefined, {
     refetchInterval: 15000,
   });
+
+  // Auto-refresh matches every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   // Filter matches based on real-time status and date
   const now = new Date();
@@ -55,11 +65,19 @@ export default function Home() {
                 Dominate the field with your cricket knowledge. Build, compete, and win in the most enthusiastic gaming arena.
               </p>
               <div className="flex flex-wrap gap-6">
-                <Link href="/register">
-                  <Button size="lg" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black bg-primary hover:bg-primary/90 text-black">
-                    JOIN THE BATTLE
-                  </Button>
-                </Link>
+                {isAuthenticated ? (
+                  <Link href="/dashboard">
+                    <Button size="lg" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black bg-primary hover:bg-primary/90 text-black">
+                      MY DASHBOARD
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link href="/register">
+                    <Button size="lg" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black bg-primary hover:bg-primary/90 text-black">
+                      JOIN THE BATTLE
+                    </Button>
+                  </Link>
+                )}
                 <Link href="/how-to-play">
                   <Button size="lg" variant="outline" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black border-2 border-white/10 hover:bg-white/5">
                     HOW TO PLAY
