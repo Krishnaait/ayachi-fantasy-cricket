@@ -12,6 +12,7 @@ interface MatchCardProps {
     status: string;
     venue: string;
     date: string;
+    dateTimeGMT: string;
     teams: string[];
     teamInfo?: { name: string; shortname: string; img: string }[];
     matchStarted: boolean;
@@ -79,7 +80,7 @@ export default function MatchCard({ match, type }: MatchCardProps) {
         <div className="space-y-2 pt-2 border-t border-border/50">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" />
-            <span>{formatToIST(match.date)}</span>
+            <span>{formatToIST(match.dateTimeGMT || match.date)}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <MapPin className="h-3 w-3" />

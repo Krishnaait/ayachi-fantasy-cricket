@@ -203,7 +203,7 @@ export async function resetPassword(token: string, newPassword: string): Promise
 // Team management functions
 export async function createTeam(teamData: {
   userId: number;
-  matchId: string;
+  matchId?: string;
   teamName: string;
   captainId: string;
   viceCaptainId: string;
@@ -218,7 +218,7 @@ export async function createTeam(teamData: {
   try {
     const result = await db.insert(teams).values({
       userId: teamData.userId,
-      matchId: teamData.matchId,
+      matchId: teamData.matchId || "global",
       teamName: teamData.teamName,
       captainId: teamData.captainId,
       viceCaptainId: teamData.viceCaptainId,
@@ -276,7 +276,7 @@ export async function joinContest(userId: number, contestId: number, teamId: num
   }
 
   try {
-    // Check if already joined
+    // Check if already joined this specific contest
     const existing = await db.select().from(contestEntries).where(
       and(
         eq(contestEntries.userId, userId),
@@ -288,6 +288,7 @@ export async function joinContest(userId: number, contestId: number, teamId: num
       return { success: false, message: "Already joined this contest" };
     }
 
+    // Note: We allow the same teamId to be used in different contests/matches
     await db.insert(contestEntries).values({
       userId,
       contestId,
@@ -298,8 +299,9 @@ export async function joinContest(userId: number, contestId: number, teamId: num
     // Update current entries count
     const contest = await db.select().from(contests).where(eq(contests.id, contestId)).limit(1);
     if (contest.length > 0) {
+      const currentEntries = contest[0].currentEntries || 0;
       await db.update(contests).set({
-        currentEntries: contest[0].currentEntries + 1
+        currentEntries: currentEntries + 1
       }).where(eq(contests.id, contestId));
     }
 

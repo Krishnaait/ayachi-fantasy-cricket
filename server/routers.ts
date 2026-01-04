@@ -127,8 +127,8 @@ export const appRouter = router({
       const current = await getCurrentMatches();
       
       // Fetch multiple pages of matches to find upcoming ones
-      // We scan up to 4 pages (100 matches) to ensure we find future fixtures
-      const pages = [0, 25, 50, 75];
+      // We scan up to 8 pages (200 matches) to ensure we find all match types (Test, ODI, T20)
+      const pages = [0, 25, 50, 75, 100, 125, 150, 175];
       const matchesLists = await Promise.all(pages.map(offset => getMatchesList(offset)));
       
       // Merge all matches and remove duplicates

@@ -86,12 +86,9 @@ export default function Home() {
             <div className="relative">
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-3xl"></div>
               <img 
-                src="/images/hero.png" 
+                src="/hero_image.png" 
                 alt="Cricket Fantasy" 
                 className="relative rounded-2xl shadow-2xl border border-border"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80&w=1000";
-                }}
               />
             </div>
           </div>
@@ -203,51 +200,91 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 px-4">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AYACHI?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience the best free-to-play fantasy cricket platform designed for learning and fun
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <Shield className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>100% Free</CardTitle>
-                <CardDescription>
-                  No real money, no financial risk. Play purely for fun and learning.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <BookOpen className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Educational</CardTitle>
-                <CardDescription>
-                  Learn cricket strategies, player analysis, and team management skills.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <Users className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Skill-Based</CardTitle>
-                <CardDescription>
-                  Test your cricket knowledge and compete with other enthusiasts.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Learn Without Financial Risk */}
+	      {/* Why Choose Us */}
+	      <section className="py-20 px-4">
+	        <div className="container">
+	          <div className="text-center mb-12">
+	            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AYACHI?</h2>
+	            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+	              Experience the best free-to-play fantasy cricket platform designed for learning and fun
+	            </p>
+	          </div>
+	          
+	          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+	            <Card>
+	              <CardHeader>
+	                <Shield className="h-12 w-12 text-primary mb-4" />
+	                <CardTitle>100% Free</CardTitle>
+	                <CardDescription>
+	                  No real money, no financial risk. Play purely for fun and learning.
+	                </CardDescription>
+	              </CardHeader>
+	            </Card>
+	            
+	            <Card>
+	              <CardHeader>
+	                <Trophy className="h-12 w-12 text-primary mb-4" />
+	                <CardTitle>Skill-Based</CardTitle>
+	                <CardDescription>
+	                  Test your cricket knowledge and analytical skills against others.
+	                </CardDescription>
+	              </CardHeader>
+	            </Card>
+	            
+	            <Card>
+	              <CardHeader>
+	                <Users className="h-12 w-12 text-primary mb-4" />
+	                <CardTitle>Community Focus</CardTitle>
+	                <CardDescription>
+	                  Join a growing community of passionate cricket fans and competitors.
+	                </CardDescription>
+	              </CardHeader>
+	            </Card>
+	          </div>
+	        </div>
+	      </section>
+	
+	      {/* The AYACHI Experience */}
+	      <section className="py-20 px-4 bg-muted/50">
+	        <div className="container">
+	          <div className="text-center mb-12">
+	            <h2 className="text-3xl md:text-4xl font-bold mb-4">The AYACHI Experience</h2>
+	            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+	              From building your team to competing for the top spot, see what makes AYACHI unique.
+	            </p>
+	          </div>
+	          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+	            <Card className="overflow-hidden">
+	              <img 
+	                src="/team_selection.png" 
+	                alt="Team Selection" 
+	                className="w-full h-auto object-cover"
+	              />
+	              <CardHeader>
+	                <CardTitle>Build Your Dream Team</CardTitle>
+	                <CardDescription>
+	                  Use your 100 credits wisely to select the best 11 players and assign your Captain and Vice-Captain.
+	                </CardDescription>
+	              </CardHeader>
+	            </Card>
+	            <Card className="overflow-hidden">
+	              <img 
+	                src="/prize_pool.png" 
+	                alt="Compete for the Prize Pool" 
+	                className="w-full h-auto object-cover"
+	              />
+	              <CardHeader>
+	                <CardTitle>Compete for the Top Spot</CardTitle>
+	                <CardDescription>
+	                  Join free contests and climb the leaderboard to prove your fantasy cricket expertise.
+	                </CardDescription>
+	              </CardHeader>
+	            </Card>
+	          </div>
+	        </div>
+	      </section>
+	
+	      {/* Learn Without Financial Risk */}
       <section className="py-20 px-4 bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

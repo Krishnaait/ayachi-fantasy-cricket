@@ -51,7 +51,7 @@ export default function Results() {
               {match.matchType} • {match.venue}
             </div>
             <CardTitle className="text-3xl md:text-5xl font-black mb-4">{match.name}</CardTitle>
-            <div className="text-muted-foreground font-medium">{formatToIST(match.date)}</div>
+            <div className="text-muted-foreground font-medium">{formatToIST(match.dateTimeGMT || match.date)}</div>
           </CardHeader>
           <CardContent className="py-12">
             <div className="flex flex-col md:flex-row justify-around items-center gap-12">

@@ -74,7 +74,7 @@ export default function LiveScore() {
               {match.matchType} • {match.venue}
             </div>
             <CardTitle className="text-2xl md:text-4xl">{match.name}</CardTitle>
-            <div className="text-muted-foreground mt-2">{formatToIST(match.date)}</div>
+            <div className="text-muted-foreground mt-2">{formatToIST(match.dateTimeGMT || match.date)}</div>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row justify-around items-center gap-8 py-8">
