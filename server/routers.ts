@@ -123,11 +123,13 @@ export const appRouter = router({
       // Fetch current matches (Live + Recent)
       const current = await getCurrentMatches();
       
-      // Fetch upcoming matches (using offset to get more if needed)
-      const upcoming = await getMatchesList(0);
+      // Fetch more matches from the list to ensure we get upcoming ones
+      const list1 = await getMatchesList(0);
+      const list2 = await getMatchesList(25);
+      const list3 = await getMatchesList(50);
       
       // Merge and remove duplicates by ID
-      const allMatches = [...current, ...upcoming];
+      const allMatches = [...current, ...list1, ...list2, ...list3];
       const uniqueMatches = Array.from(new Map(allMatches.map(m => [m.id, m])).values());
       
       // Sort by date (Upcoming first, then Live, then Completed)
@@ -205,7 +207,9 @@ export const appRouter = router({
   contests: router({
     // Get all active contests
     list: publicProcedure.query(async () => {
-      return await db.getActiveContests();
+      const contests = await db.getActiveContests();
+      console.log(`Fetched ${contests.length} active contests`);
+      return contests;
     }),
 
     // Join contest
@@ -216,9 +220,7 @@ export const appRouter = router({
       }))
       .mutation(async ({ input, ctx }) => {
         const userId = parseInt(ctx.req.cookies?.ayachi_user_id || "0");
-        if (!userId) {
-          throw new TRPCError({ code: "UNAUTHORIZED" });
-        }
+        if (!userId) throw new Error("Unauthorized");
         return await db.joinContest(userId, input.contestId, input.teamId);
       }),
 

@@ -6,9 +6,26 @@ const BASE_URL = "https://api.cricapi.com/v1";
 async function debugApi() {
   console.log("Testing CricketData API with key:", API_KEY);
   try {
-    const response = await axios.get(`${BASE_URL}/currentMatches`, {
+    console.log("--- Testing currentMatches ---");
+    const currentResponse = await axios.get(`${BASE_URL}/currentMatches`, {
       params: { apikey: API_KEY }
     });
+    console.log("Current Matches Status:", currentResponse.status);
+    console.log("Current Matches Count:", currentResponse.data.data?.length);
+
+    console.log("--- Testing matches list (Upcoming) ---");
+    const listResponse = await axios.get(`${BASE_URL}/matches`, {
+      params: { apikey: API_KEY, offset: 0 }
+    });
+    console.log("Matches List Status:", listResponse.status);
+    console.log("Matches List Count:", listResponse.data.data?.length);
+    if (listResponse.data.data) {
+      const upcoming = listResponse.data.data.filter((m: any) => !m.matchStarted);
+      console.log("Upcoming Matches Count:", upcoming.length);
+      if (upcoming.length > 0) {
+        console.log("First Upcoming Match:", JSON.stringify(upcoming[0], null, 2));
+      }
+    }
     console.log("API Response Status:", response.status);
     console.log("API Response Data:", JSON.stringify(response.data, null, 2));
     
