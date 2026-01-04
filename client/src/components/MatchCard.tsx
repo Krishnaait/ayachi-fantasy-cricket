@@ -12,6 +12,7 @@ interface MatchCardProps {
     venue: string;
     date: string;
     teams: string[];
+    teamInfo?: { name: string; shortname: string; img: string }[];
     matchStarted: boolean;
     matchEnded: boolean;
   };
@@ -19,37 +20,52 @@ interface MatchCardProps {
 }
 
 export default function MatchCard({ match, type }: MatchCardProps) {
+  const team1 = match.teamInfo?.[0] || { name: match.teams[0], shortname: match.teams[0]?.substring(0, 3).toUpperCase(), img: "" };
+  const team2 = match.teamInfo?.[1] || { name: match.teams[1], shortname: match.teams[1]?.substring(0, 3).toUpperCase(), img: "" };
+
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow border-primary/20">
-      <CardHeader className="bg-muted/50 pb-3">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow border-primary/20 bg-card/50 backdrop-blur-sm">
+      <CardHeader className="bg-muted/30 pb-3">
         <div className="flex justify-between items-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
             {match.matchType}
           </span>
-          <span className={`text-xs font-medium px-2 py-1 rounded ${
-            type === 'live' ? 'bg-red-500/10 text-red-500 animate-pulse' : 
-            type === 'upcoming' ? 'bg-blue-500/10 text-blue-500' : 
-            'bg-gray-500/10 text-gray-500'
+          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+            type === 'live' ? 'bg-red-500/10 text-red-500 border-red-500/20 animate-pulse' : 
+            type === 'upcoming' ? 'bg-blue-500/10 text-blue-500 border-blue-500/20' : 
+            'bg-muted text-muted-foreground border-border'
           }`}>
             {type === 'live' ? '● LIVE' : type.toUpperCase()}
           </span>
         </div>
-        <CardTitle className="text-lg mt-2 line-clamp-1">{match.name}</CardTitle>
+        <CardTitle className="text-base mt-2 line-clamp-1 font-bold">{match.name}</CardTitle>
       </CardHeader>
-      <CardContent className="pt-4 space-y-4">
-        <div className="flex justify-between items-center gap-4">
-          <div className="flex flex-col items-center flex-1 text-center">
-            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-2 font-bold text-lg">
-              {match.teams[0]?.substring(0, 2).toUpperCase()}
+      <CardContent className="pt-6 space-y-6">
+        <div className="flex justify-between items-center gap-2">
+          <div className="flex flex-col items-center flex-1 text-center space-y-2">
+            <div className="w-14 h-14 rounded-full bg-muted/50 border border-border flex items-center justify-center overflow-hidden shadow-inner">
+              {team1.img ? (
+                <img src={team1.img} alt={team1.name} className="w-10 h-10 object-contain" />
+              ) : (
+                <span className="font-bold text-lg text-muted-foreground">{team1.shortname}</span>
+              )}
             </div>
-            <span className="text-sm font-semibold line-clamp-1">{match.teams[0]}</span>
+            <span className="text-xs font-bold line-clamp-1 uppercase tracking-tight">{team1.name}</span>
           </div>
-          <div className="text-xl font-bold text-muted-foreground">VS</div>
-          <div className="flex flex-col items-center flex-1 text-center">
-            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-2 font-bold text-lg">
-              {match.teams[1]?.substring(0, 2).toUpperCase()}
+          
+          <div className="flex flex-col items-center px-2">
+            <div className="text-xs font-black text-primary/40 italic">VS</div>
+          </div>
+
+          <div className="flex flex-col items-center flex-1 text-center space-y-2">
+            <div className="w-14 h-14 rounded-full bg-muted/50 border border-border flex items-center justify-center overflow-hidden shadow-inner">
+              {team2.img ? (
+                <img src={team2.img} alt={team2.name} className="w-10 h-10 object-contain" />
+              ) : (
+                <span className="font-bold text-lg text-muted-foreground">{team2.shortname}</span>
+              )}
             </div>
-            <span className="text-sm font-semibold line-clamp-1">{match.teams[1]}</span>
+            <span className="text-xs font-bold line-clamp-1 uppercase tracking-tight">{team2.name}</span>
           </div>
         </div>
 
