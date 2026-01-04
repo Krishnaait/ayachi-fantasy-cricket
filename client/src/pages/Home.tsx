@@ -9,7 +9,9 @@ import { Trophy, Users, Shield, BookOpen, Target, Zap, Heart, CheckCircle2, Awar
 import { trpc } from "@/lib/trpc";
 
 export default function Home() {
-  const { data: matches, isLoading } = trpc.matches.list.useQuery();
+  const { data: matches, isLoading } = trpc.matches.list.useQuery(undefined, {
+    refetchInterval: 15000, // Refresh every 15 seconds for real-time updates
+  });
 
   const liveMatches = matches?.filter(m => m.matchStarted && !m.matchEnded) || [];
   const upcomingMatches = matches?.filter(m => !m.matchStarted) || [];
