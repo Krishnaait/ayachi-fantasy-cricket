@@ -36,151 +36,159 @@ export default function Results() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 container py-12 px-4 max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-8">
-          <Trophy className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold">Match Results</h1>
+      <main className="flex-1 container py-12 px-4 max-w-7xl">
+        <div className="flex items-center gap-4 mb-12 relative">
+          <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-12 bg-primary rounded-full"></div>
+          <Trophy className="h-10 w-10 text-primary" />
+          <h1 className="text-4xl md:text-5xl font-black gaming-gradient-text tracking-tighter uppercase">
+            Victory Archives
+          </h1>
         </div>
 
         {/* Match Header Card */}
-        <Card className="mb-8 border-primary/20 overflow-hidden shadow-lg">
-          <CardHeader className="bg-primary/5 text-center py-10">
-            <div className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">
+        <div className="gaming-card rounded-3xl p-8 md:p-12 mb-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 -translate-y-1/2 translate-x-1/2"></div>
+          
+          <div className="text-center mb-12">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-6">
               {match.matchType} • {match.venue}
             </div>
-            <CardTitle className="text-3xl md:text-5xl font-black mb-4">{match.name}</CardTitle>
-            <div className="text-muted-foreground font-medium">{formatToIST(match.dateTimeGMT || match.date)}</div>
-          </CardHeader>
-          <CardContent className="py-12">
-            <div className="flex flex-col md:flex-row justify-around items-center gap-12">
-              <div className="text-center space-y-4">
-                <div className="w-24 h-24 rounded-full bg-muted mx-auto flex items-center justify-center text-3xl font-bold border-4 border-border overflow-hidden">
-                  {match.teamInfo?.[0]?.img ? (
-                    <img src={match.teamInfo[0].img} alt="" className="w-full h-full object-contain p-2" />
-                  ) : (
-                    match.teams[0]?.substring(0, 2).toUpperCase()
-                  )}
-                </div>
-                <div className="text-2xl font-bold">{match.teams[0]}</div>
-                {match.score?.find((s: any) => s.inning.includes(match.teams[0])) && (
-                  <div className="text-3xl font-black text-primary">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 uppercase">{match.name}</h2>
+            <div className="text-muted-foreground font-bold uppercase tracking-widest text-xs">{formatToIST(match.dateTimeGMT || match.date)}</div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-12 py-12 border-y border-white/5">
+            <div className="text-center space-y-6">
+              <div className="w-28 h-28 rounded-3xl bg-white/5 mx-auto flex items-center justify-center text-4xl font-black border border-white/10 overflow-hidden shadow-2xl group-hover:scale-110 transition-transform">
+                {match.teamInfo?.[0]?.img ? (
+                  <img src={match.teamInfo[0].img} alt="" className="w-full h-full object-contain p-4" />
+                ) : (
+                  <span className="text-primary">{match.teams[0]?.substring(0, 2).toUpperCase()}</span>
+                )}
+              </div>
+              <div className="text-2xl font-black uppercase tracking-tighter">{match.teams[0]}</div>
+              {match.score?.find((s: any) => s.inning.includes(match.teams[0])) && (
+                <div className="space-y-1">
+                  <div className="text-4xl font-black text-primary tracking-tighter">
                     {match.score.find((s: any) => s.inning.includes(match.teams[0])).r}/
                     {match.score.find((s: any) => s.inning.includes(match.teams[0])).w}
-                    <div className="text-sm text-muted-foreground font-normal">
-                      ({match.score.find((s: any) => s.inning.includes(match.teams[0])).o} overs)
-                    </div>
                   </div>
+                  <div className="text-xs font-black text-muted-foreground uppercase tracking-widest">
+                    {match.score.find((s: any) => s.inning.includes(match.teams[0])).o} Overs
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                <span className="text-3xl font-black text-muted-foreground/30 italic">VS</span>
+              </div>
+              <div className="px-8 py-3 rounded-2xl bg-accent/20 border border-accent/30 text-accent font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(var(--accent),0.2)]">
+                {match.status}
+              </div>
+            </div>
+
+            <div className="text-center space-y-6">
+              <div className="w-28 h-28 rounded-3xl bg-white/5 mx-auto flex items-center justify-center text-4xl font-black border border-white/10 overflow-hidden shadow-2xl group-hover:scale-110 transition-transform">
+                {match.teamInfo?.[1]?.img ? (
+                  <img src={match.teamInfo[1].img} alt="" className="w-full h-full object-contain p-4" />
+                ) : (
+                  <span className="text-primary">{match.teams[1]?.substring(0, 2).toUpperCase()}</span>
                 )}
               </div>
-
-              <div className="text-4xl font-black text-muted-foreground italic">VS</div>
-
-              <div className="text-center space-y-4">
-                <div className="w-24 h-24 rounded-full bg-muted mx-auto flex items-center justify-center text-3xl font-bold border-4 border-border overflow-hidden">
-                  {match.teamInfo?.[1]?.img ? (
-                    <img src={match.teamInfo[1].img} alt="" className="w-full h-full object-contain p-2" />
-                  ) : (
-                    match.teams[1]?.substring(0, 2).toUpperCase()
-                  )}
-                </div>
-                <div className="text-2xl font-bold">{match.teams[1]}</div>
-                {match.score?.find((s: any) => s.inning.includes(match.teams[1])) && (
-                  <div className="text-3xl font-black text-primary">
+              <div className="text-2xl font-black uppercase tracking-tighter">{match.teams[1]}</div>
+              {match.score?.find((s: any) => s.inning.includes(match.teams[1])) && (
+                <div className="space-y-1">
+                  <div className="text-4xl font-black text-primary tracking-tighter">
                     {match.score.find((s: any) => s.inning.includes(match.teams[1])).r}/
                     {match.score.find((s: any) => s.inning.includes(match.teams[1])).w}
-                    <div className="text-sm text-muted-foreground font-normal">
-                      ({match.score.find((s: any) => s.inning.includes(match.teams[1])).o} overs)
-                    </div>
                   </div>
-                )}
-              </div>
+                  <div className="text-xs font-black text-muted-foreground uppercase tracking-widest">
+                    {match.score.find((s: any) => s.inning.includes(match.teams[1])).o} Overs
+                  </div>
+                </div>
+              )}
             </div>
-
-            <div className="mt-12 text-center">
-              <div className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-green-500/10 text-green-600 border border-green-500/20">
-                <Award className="h-6 w-6" />
-                <span className="text-xl font-black uppercase tracking-tight">{match.status}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Detailed Scorecard */}
-        <div className="space-y-8">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <Award className="h-6 w-6 text-primary" />
-            Detailed Scorecard
-          </h2>
+        <div className="space-y-12">
+          <div className="flex items-center gap-4">
+            <Award className="h-8 w-8 text-primary" />
+            <h2 className="text-3xl font-black uppercase tracking-tighter">Detailed Scorecard</h2>
+          </div>
           
           {scorecard?.scorecard?.map((inning: any, idx: number) => (
-            <Card key={idx} className="overflow-hidden border-gray-200 shadow-sm">
-              <div className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
-                <h3 className="font-bold text-lg">{inning.inning}</h3>
+            <div key={idx} className="gaming-card rounded-3xl overflow-hidden">
+              <div className="bg-white/5 px-8 py-6 border-b border-white/10 flex justify-between items-center">
+                <h3 className="text-xl font-black uppercase tracking-tighter text-primary">{inning.inning}</h3>
               </div>
               
               {/* Batting Table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b border-gray-100">
-                    <tr>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-600">Batter</th>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-600">Dismissal</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">R</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">B</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">4s</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">6s</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">SR</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-white/5 hover:bg-transparent">
+                      <TableHead className="px-8 py-6 text-xs font-black uppercase tracking-widest text-muted-foreground">Batter</TableHead>
+                      <TableHead className="px-8 py-6 text-xs font-black uppercase tracking-widest text-muted-foreground">Dismissal</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">R</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">B</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">4s</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">6s</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">SR</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {inning.batting?.map((score: any, sIdx: number) => (
-                      <tr key={sIdx} className="hover:bg-gray-50 transition-colors">
-                        <td className="px-6 py-4 font-medium text-gray-900">{score.batsman?.name}</td>
-                        <td className="px-6 py-4 text-gray-500 italic">{score["dismissal-text"]}</td>
-                        <td className="px-6 py-4 text-right font-bold">{score.r}</td>
-                        <td className="px-6 py-4 text-right text-gray-600">{score.b}</td>
-                        <td className="px-6 py-4 text-right text-gray-600">{score["4s"]}</td>
-                        <td className="px-6 py-4 text-right text-gray-600">{score["6s"]}</td>
-                        <td className="px-6 py-4 text-right text-gray-600">{score.sr}</td>
+                      <tr key={sIdx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td className="px-8 py-6 font-black text-lg">{score.batsman?.name}</td>
+                        <td className="px-8 py-6 text-muted-foreground text-xs font-bold uppercase tracking-wider italic">{score["dismissal-text"]}</td>
+                        <td className="px-8 py-6 text-right font-black text-2xl text-primary">{score.r}</td>
+                        <td className="px-8 py-6 text-right font-bold text-muted-foreground">{score.b}</td>
+                        <td className="px-8 py-6 text-right font-bold">{score["4s"]}</td>
+                        <td className="px-8 py-6 text-right font-bold">{score["6s"]}</td>
+                        <td className="px-8 py-6 text-right font-black text-accent">{score.sr}</td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
 
               {/* Bowling Table */}
-              <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
-                <h4 className="font-bold text-gray-700">Bowling</h4>
+              <div className="bg-white/5 px-8 py-4 border-y border-white/10">
+                <h4 className="text-sm font-black uppercase tracking-[0.2em] text-accent">Bowling Arsenal</h4>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b border-gray-100">
-                    <tr>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-600">Bowler</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">O</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">M</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">R</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">W</th>
-                      <th className="px-6 py-3 text-right font-semibold text-gray-600">Eco</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-white/5 hover:bg-transparent">
+                      <TableHead className="px-8 py-6 text-xs font-black uppercase tracking-widest text-muted-foreground">Bowler</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">O</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">M</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">R</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">W</TableHead>
+                      <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">Eco</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <tbody className="divide-y divide-white/5">
                     {inning.bowling?.map((bowl: any, bIdx: number) => (
-                      <tr key={bIdx} className="hover:bg-gray-50 transition-colors">
-                        <td className="px-6 py-4 font-medium text-gray-900">{bowl.bowler?.name}</td>
-                        <td className="px-6 py-4 text-right">{bowl.o}</td>
-                        <td className="px-6 py-4 text-right">{bowl.m}</td>
-                        <td className="px-6 py-4 text-right">{bowl.r}</td>
-                        <td className="px-6 py-4 text-right font-bold text-blue-600">{bowl.w}</td>
-                        <td className="px-6 py-4 text-right">{bowl.eco}</td>
+                      <tr key={bIdx} className="hover:bg-white/5 transition-colors">
+                        <td className="px-8 py-6 font-black text-lg">{bowl.bowler?.name}</td>
+                        <td className="px-8 py-6 text-right font-bold">{bowl.o}</td>
+                        <td className="px-8 py-6 text-right font-bold">{bowl.m}</td>
+                        <td className="px-8 py-6 text-right font-black text-xl">{bowl.r}</td>
+                        <td className="px-8 py-6 text-right font-black text-3xl text-primary">{bowl.w}</td>
+                        <td className="px-8 py-6 text-right font-black text-accent">{bowl.eco}</td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </main>
