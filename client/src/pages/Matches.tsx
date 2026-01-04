@@ -75,9 +75,11 @@ export default function Matches() {
 
           <TabsContent value="live" className="mt-0">
             {liveMatches.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">                {liveMatches.map((match) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {liveMatches.map((match) => (
                   <MatchCard key={match.id} match={match} type="live" />
-                ))}          </div>
+                ))}
+              </div>
             ) : (
               <div className="text-center py-24 bg-white rounded-3xl border border-dashed border-gray-300">
                 <PlayCircle className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -89,9 +91,11 @@ export default function Matches() {
 
           <TabsContent value="upcoming" className="mt-0">
             {upcomingMatches.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap                {upcomingMatches.map((match) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {upcomingMatches.map((match) => (
                   <MatchCard key={match.id} match={match} type="upcoming" />
-                ))}              </div>
+                ))}
+              </div>
             ) : (
               <div className="text-center py-24 bg-white rounded-3xl border border-dashed border-gray-300">
                 <Calendar className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -103,9 +107,11 @@ export default function Matches() {
 
           <TabsContent value="completed" className="mt-0">
             {completedMatches.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-                {completedMatches.map((match) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {completedMatches.map((match) => (
                   <MatchCard key={match.id} match={match} type="completed" />
-                ))}           </div>
+                ))}
+              </div>
             ) : (
               <div className="text-center py-24 bg-white rounded-3xl border border-dashed border-gray-300">
                 <CheckCircle2 className="h-16 w-16 text-gray-300 mx-auto mb-4" />
