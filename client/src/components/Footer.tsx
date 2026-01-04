@@ -4,40 +4,48 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t bg-muted/50">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="w-full border-t border-white/10 bg-black relative overflow-hidden">
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary"></div>
+      <div className="container py-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div className="space-y-4">
-            <img src="/ayachi_logo.png" alt="AYACHI" className="h-14 w-auto" />
-            <p className="text-sm text-muted-foreground">Fantasy Sport</p>
-            <div className="flex space-x-3">
-              <img src="/icon_18plus.png" alt="18+" className="h-12 w-12 object-contain" />
-              <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-12 w-12 object-contain" />
-              <img src="/icon_educational.png" alt="Educational" className="h-12 w-12 object-contain" />
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 group">
+              <img src="/ayachi_logo.png" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
+              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">AYACHI</span>
+            </div>
+            <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
+            <div className="flex space-x-4">
+              <img src="/icon_18plus.png" alt="18+" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/icon_safe_secure.png" alt="Safe & Secure" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/icon_educational.png" alt="Educational" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-6">Quick Links</h3>
+            <ul className="space-y-3 text-sm font-bold">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-all">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/how-to-play" className="text-muted-foreground hover:text-foreground transition-colors">
-                  How to Play
+                <Link href="/matches" className="text-muted-foreground hover:text-primary transition-all">
+                  Matches
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About Us
+                <Link href="/leaderboard" className="text-muted-foreground hover:text-primary transition-all">
+                  Leaderboard
                 </Link>
               </li>
-
+              <li>
+                <Link href="/how-to-play" className="text-muted-foreground hover:text-primary transition-all">
+                  How to Play
+                </Link>
+              </li>
             </ul>
           </div>
 

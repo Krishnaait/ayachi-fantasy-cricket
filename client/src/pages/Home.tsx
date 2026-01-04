@@ -37,33 +37,32 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-b from-primary/5 to-background">
+      <section className="relative py-32 px-4 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 -z-10"></div>
         <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-primary/10 text-primary mb-2">
-                <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
-                100% Free to Play Cricket Fantasy
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-10">
+              <div className="inline-flex items-center rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-widest bg-primary/20 text-primary border border-primary/30 mb-2 animate-pulse">
+                <span className="flex h-2 w-2 rounded-full bg-primary mr-2 shadow-[0_0_10px_rgba(var(--primary),0.8)]"></span>
+                100% Free Skill-Based Gaming
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                Welcome to <span className="text-primary">AYACHI</span>
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none">
+                PLAY THE <br />
+                <span className="gaming-gradient-text">ULTIMATE</span> <br />
+                FANTASY
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                The ultimate skill-based platform for cricket enthusiasts.
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
+                Dominate the field with your cricket knowledge. Build, compete, and win in the most enthusiastic gaming arena.
               </p>
-              <p className="text-lg text-muted-foreground">
-                Build your dream cricket team, compete in contests, and showcase your cricket knowledge. 
-                No real money involved - pure skill-based gaming for education and entertainment!
-              </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-6">
                 <Link href="/register">
-                  <Button size="lg" className="text-lg px-8 h-14">
-                    Get Started Free
+                  <Button size="lg" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black bg-primary hover:bg-primary/90 text-black">
+                    JOIN THE BATTLE
                   </Button>
                 </Link>
                 <Link href="/how-to-play">
-                  <Button size="lg" variant="outline" className="text-lg px-8 h-14">
-                    How to Play
+                  <Button size="lg" variant="outline" className="gaming-button text-lg px-10 h-16 rounded-2xl font-black border-2 border-white/10 hover:bg-white/5">
+                    HOW TO PLAY
                   </Button>
                 </Link>
               </div>

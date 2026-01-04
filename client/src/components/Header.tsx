@@ -13,43 +13,38 @@ export default function Header() {
   const { user, isAuthenticated, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl">
+      <div className="container flex h-20 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/ayachi_logo.png" alt="AYACHI" className="h-12 w-auto" />
+        <Link href="/" className="flex items-center space-x-3 group">
+          <img src="/ayachi_logo.png" alt="AYACHI" className="h-14 w-auto group-hover:scale-110 transition-transform duration-300" />
+          <span className="text-2xl font-black tracking-tighter gaming-gradient-text hidden sm:block">AYACHI</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <Link href="/" className="transition-colors hover:text-primary">
+        <nav className="hidden md:flex items-center space-x-8 text-xs font-black uppercase tracking-widest">
+          <Link href="/" className="transition-all hover:text-primary hover:scale-110">
             Home
           </Link>
-          <Link href="/how-to-play" className="transition-colors hover:text-primary">
-            How to Play
-          </Link>
-          <Link href="/about" className="transition-colors hover:text-primary">
-            About Us
-          </Link>
-          <Link href="/matches" className="transition-colors hover:text-primary">
+          <Link href="/matches" className="transition-all hover:text-primary hover:scale-110">
             Matches
-          </Link>
-          <Link href="/faq" className="transition-colors hover:text-primary">
-            FAQ
           </Link>
           {isAuthenticated && (
             <>
-              <Link href="/dashboard" className="transition-colors hover:text-primary">
+              <Link href="/dashboard" className="transition-all hover:text-primary hover:scale-110">
                 Dashboard
               </Link>
-              <Link href="/contests" className="transition-colors hover:text-primary">
-                Contests
-              </Link>
-              <Link href="/leaderboard" className="transition-colors hover:text-primary">
+              <Link href="/leaderboard" className="transition-all hover:text-primary hover:scale-110">
                 Leaderboard
               </Link>
             </>
           )}
+          <Link href="/how-to-play" className="transition-all hover:text-primary hover:scale-110">
+            How to Play
+          </Link>
+          <Link href="/faq" className="transition-all hover:text-primary hover:scale-110">
+            FAQ
+          </Link>
         </nav>
 
         {/* Auth Buttons */}
@@ -62,7 +57,7 @@ export default function Header() {
                 </Button>
               </Link>
               <Link href="/register">
-                <Button className="hidden md:inline-flex">Register</Button>
+                <Button className="hidden md:inline-flex gaming-button font-black uppercase tracking-widest bg-primary text-black">Register</Button>
               </Link>
             </>
           ) : (

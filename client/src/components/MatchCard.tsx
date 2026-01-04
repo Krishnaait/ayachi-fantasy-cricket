@@ -64,48 +64,51 @@ export default function MatchCard({ match, type }: MatchCardProps) {
     shortname: (match.teams?.[1] || "TBC").substring(0, 3).toUpperCase(), 
     img: "" 
   }; return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow border-primary/20 bg-card/50 backdrop-blur-sm">
-      <CardHeader className="bg-muted/30 pb-3">
+    <Card className="gaming-card overflow-hidden group">
+      <CardHeader className="bg-white/5 pb-3 border-b border-white/5">
         <div className="flex justify-between items-center">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+          <span className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-lg border border-primary/20">
             {match.matchType}
           </span>
-          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-            type === 'live' ? 'bg-red-500/10 text-red-500 border-red-500/20 animate-pulse' : 
-            type === 'upcoming' ? 'bg-blue-500/10 text-blue-500 border-blue-500/20' : 
-            'bg-muted text-muted-foreground border-border'
+          <span className={`text-[10px] font-black px-3 py-1 rounded-lg border ${
+            type === 'live' ? 'bg-red-500/20 text-red-500 border-red-500/30 animate-pulse' : 
+            type === 'upcoming' ? 'bg-accent/20 text-accent border-accent/30' : 
+            'bg-white/5 text-muted-foreground border-white/10'
           }`}>
-            {type === 'live' ? '● LIVE' : type.toUpperCase()}
+            {type === 'live' ? '● LIVE BATTLE' : type.toUpperCase()}
           </span>
         </div>
-        <CardTitle className="text-base mt-2 line-clamp-1 font-bold">{match.name}</CardTitle>
+        <CardTitle className="text-base mt-3 line-clamp-1 font-black tracking-tight group-hover:text-primary transition-colors">{match.name}</CardTitle>
       </CardHeader>
-      <CardContent className="pt-6 space-y-6">
-        <div className="flex justify-between items-center gap-2">
-          <div className="flex flex-col items-center flex-1 text-center space-y-2">
-            <div className="w-14 h-14 rounded-full bg-muted/50 border border-border flex items-center justify-center overflow-hidden shadow-inner">
+      <CardContent className="pt-8 space-y-8">
+        <div className="flex justify-between items-center gap-4 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-black text-white/5 italic -z-0">VS</div>
+          <div className="flex flex-col items-center flex-1 text-center space-y-3 z-10">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500 shadow-2xl">
               {team1.img ? (
-                <img src={team1.img} alt={team1.name} className="w-10 h-10 object-contain" />
+                <img src={team1.img} alt={team1.name} className="w-12 h-12 object-contain" />
               ) : (
-                <span className="font-bold text-lg text-muted-foreground">{team1.shortname}</span>
+                <span className="font-black text-xl text-primary">{team1.shortname}</span>
               )}
             </div>
-            <span className="text-xs font-bold line-clamp-1 uppercase tracking-tight">{team1.name}</span>
+            <span className="text-[10px] font-black line-clamp-1 uppercase tracking-widest text-muted-foreground">{team1.name}</span>
           </div>
           
-          <div className="flex flex-col items-center px-2">
-            <div className="text-xs font-black text-primary/40 italic">VS</div>
+          <div className="flex flex-col items-center px-2 z-10">
+            <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <span className="text-xs font-black text-primary italic">VS</span>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center flex-1 text-center space-y-2">
-            <div className="w-14 h-14 rounded-full bg-muted/50 border border-border flex items-center justify-center overflow-hidden shadow-inner">
+          <div className="flex flex-col items-center flex-1 text-center space-y-3 z-10">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500 shadow-2xl">
               {team2.img ? (
-                <img src={team2.img} alt={team2.name} className="w-10 h-10 object-contain" />
+                <img src={team2.img} alt={team2.name} className="w-12 h-12 object-contain" />
               ) : (
-                <span className="font-bold text-lg text-muted-foreground">{team2.shortname}</span>
+                <span className="font-black text-xl text-primary">{team2.shortname}</span>
               )}
             </div>
-            <span className="text-xs font-bold line-clamp-1 uppercase tracking-tight">{team2.name}</span>
+            <span className="text-[10px] font-black line-clamp-1 uppercase tracking-widest text-muted-foreground">{team2.name}</span>
           </div>
         </div>
 
@@ -132,18 +135,24 @@ export default function MatchCard({ match, type }: MatchCardProps) {
           )}
         </div>
 
-        <div className="pt-2">
+        <div className="pt-4">
           {type === 'upcoming' ? (
             <Link href={`/create-team/${match.id}`}>
-              <Button className="w-full" size="sm">Create Team</Button>
+              <Button className="w-full gaming-button font-black uppercase tracking-widest bg-primary hover:bg-primary/90 text-black" size="lg">
+                CREATE TEAM
+              </Button>
             </Link>
           ) : type === 'live' ? (
             <Link href={`/live-score/${match.id}`}>
-              <Button className="w-full" variant="outline" size="sm">View Live Score</Button>
+              <Button className="w-full gaming-button font-black uppercase tracking-widest border-2 border-primary/50 text-primary hover:bg-primary/10" variant="outline" size="lg">
+                LIVE SCORE
+              </Button>
             </Link>
           ) : (
             <Link href={`/results/${match.id}`}>
-              <Button className="w-full" variant="ghost" size="sm">View Results</Button>
+              <Button className="w-full gaming-button font-black uppercase tracking-widest border-2 border-white/10 text-white hover:bg-white/5" variant="outline" size="lg">
+                RESULTS
+              </Button>
             </Link>
           )}
         </div>
