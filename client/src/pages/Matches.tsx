@@ -127,9 +127,29 @@ export default function Matches() {
 
           <TabsContent value="upcoming" className="mt-0">
             {upcomingMatches.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {upcomingMatches.map((match) => (
-                  <MatchCard key={match.id} match={match} type="upcoming" />
+              <div className="space-y-12">
+                {Object.entries(
+                  upcomingMatches.reduce((acc, match) => {
+                    const date = match.date;
+                    if (!acc[date]) acc[date] = [];
+                    acc[date].push(match);
+                    return acc;
+                  }, {} as Record<string, any[]>)
+                ).sort(([dateA], [dateB]) => dateA.localeCompare(dateB)).map(([date, dateMatches]) => (
+                  <div key={date} className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="h-px flex-1 bg-gray-200"></div>
+                      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest bg-gray-100 px-4 py-1 rounded-full border">
+                        {new Date(date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+                      </h3>
+                      <div className="h-px flex-1 bg-gray-200"></div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {dateMatches.map((match) => (
+                        <MatchCard key={match.id} match={match} type="upcoming" />
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             ) : (

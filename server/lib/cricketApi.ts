@@ -140,3 +140,14 @@ export async function getSeriesPointTable(id: string) {
     return null;
   }
 }
+
+// 11. CricScore (Comprehensive list of all matches)
+export async function getCricScore() {
+  try {
+    const response = await api.get("/cricScore");
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching cricScore:", error);
+    return [];
+  }
+}

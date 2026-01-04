@@ -121,25 +121,52 @@ export const appRouter = router({
   // Match management
   matches: router({
     list: publicProcedure.query(async () => {
-      const { getCurrentMatches, getMatchesList } = await import("./lib/cricketApi");
+      const { getCurrentMatches, getMatchesList, getCricScore } = await import("./lib/cricketApi");
       
-      // Fetch current matches (Live + Recent)
-      const current = await getCurrentMatches();
-      
-      // Fetch multiple pages of matches to find upcoming ones
-      // We scan up to 20 pages (500 matches) to ensure we find all match types (Test, ODI, T20, Domestic, International)
-      const pages = Array.from({ length: 20 }, (_, i) => i * 25);
-      const matchesLists = await Promise.all(pages.map(offset => getMatchesList(offset)));
+      // Fetch from multiple endpoints for maximum coverage
+      const [current, cricScore, ...matchesLists] = await Promise.all([
+        getCurrentMatches(),
+        getCricScore(),
+        ...Array.from({ length: 20 }, (_, i) => getMatchesList(i * 25))
+      ]);
       
       // Merge all matches and remove duplicates
-      const allMatches = [...current];
+      const allMatches: any[] = [...current];
       const existingIds = new Set(allMatches.map(m => m.id));
       
+      // Process cricScore data (it has a slightly different format)
+      if (cricScore) {
+        for (const m of cricScore) {
+          if (!existingIds.has(m.id)) {
+            // Map cricScore format to standard Match format
+            allMatches.push({
+              id: m.id,
+              name: `${m.t1} vs ${m.t2}`,
+              matchType: m.matchType,
+              status: m.status,
+              venue: m.series || "TBC",
+              date: m.dateTimeGMT ? m.dateTimeGMT.split('T')[0] : "",
+              dateTimeGMT: m.dateTimeGMT,
+              teams: [m.t1, m.t2],
+              teamInfo: [
+                { name: m.t1, shortname: m.t1.split('[')[1]?.split(']')[0] || m.t1.substring(0, 3), img: m.t1img },
+                { name: m.t2, shortname: m.t2.split('[')[1]?.split(']')[0] || m.t2.substring(0, 3), img: m.t2img }
+              ],
+              matchStarted: m.ms !== "fixture",
+              matchEnded: m.ms === "result"
+            });
+            existingIds.add(m.id);
+          }
+        }
+      }
+
       for (const list of matchesLists) {
-        for (const match of list) {
-          if (!existingIds.has(match.id)) {
-            allMatches.push(match);
-            existingIds.add(match.id);
+        if (list) {
+          for (const match of list) {
+            if (!existingIds.has(match.id)) {
+              allMatches.push(match);
+              existingIds.add(match.id);
+            }
           }
         }
       }
