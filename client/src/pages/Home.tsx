@@ -111,9 +111,16 @@ export default function Home() {
               {/* Live Matches */}
               {liveMatches.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse"></div>
-                    <h2 className="text-3xl font-bold">Live Matches</h2>
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                      <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse"></div>
+                      <h2 className="text-3xl font-bold">Live Matches</h2>
+                    </div>
+                    <Link href="/matches">
+                      <Button variant="ghost" className="text-primary font-bold hover:bg-primary/5">
+                        View All
+                      </Button>
+                    </Link>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {liveMatches.map(match => (
@@ -125,9 +132,16 @@ export default function Home() {
 
               {/* Upcoming Matches */}
               <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <Trophy className="h-6 w-6 text-primary" />
-                  <h2 className="text-3xl font-bold">Upcoming Matches</h2>
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <Trophy className="h-6 w-6 text-primary" />
+                    <h2 className="text-3xl font-bold">Upcoming Matches</h2>
+                  </div>
+                  <Link href="/matches">
+                    <Button variant="ghost" className="text-primary font-bold hover:bg-primary/5">
+                      View All
+                    </Button>
+                  </Link>
                 </div>
                 {upcomingMatches.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -143,9 +157,16 @@ export default function Home() {
               {/* Completed Matches */}
               {completedMatches.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-3 mb-8">
-                    <Award className="h-6 w-6 text-primary" />
-                    <h2 className="text-3xl font-bold">Recent Results</h2>
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                      <Award className="h-6 w-6 text-primary" />
+                      <h2 className="text-3xl font-bold">Recent Results</h2>
+                    </div>
+                    <Link href="/matches">
+                      <Button variant="ghost" className="text-primary font-bold hover:bg-primary/5">
+                        View All
+                      </Button>
+                    </Link>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {completedMatches.slice(0, 3).map(match => (
