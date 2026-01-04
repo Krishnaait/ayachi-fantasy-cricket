@@ -144,17 +144,17 @@ export default function Results() {
                   </TableHeader>
                   <TableBody>
                     {inning.batting?.map((score: any, sIdx: number) => (
-                      <tr key={sIdx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                        <td className="px-8 py-6 font-black text-lg">{score.batsman?.name}</td>
-                        <td className="px-8 py-6 text-muted-foreground text-xs font-bold uppercase tracking-wider italic">{score["dismissal-text"]}</td>
-                        <td className="px-8 py-6 text-right font-black text-2xl text-primary">{score.r}</td>
-                        <td className="px-8 py-6 text-right font-bold text-muted-foreground">{score.b}</td>
-                        <td className="px-8 py-6 text-right font-bold">{score["4s"]}</td>
-                        <td className="px-8 py-6 text-right font-bold">{score["6s"]}</td>
-                        <td className="px-8 py-6 text-right font-black text-accent">{score.sr}</td>
-                      </tr>
+                      <TableRow key={sIdx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <TableCell className="px-8 py-6 font-black text-lg">{score.batsman?.name}</TableCell>
+                        <TableCell className="px-8 py-6 text-muted-foreground text-xs font-bold uppercase tracking-wider italic">{score["dismissal-text"]}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-black text-2xl text-primary">{score.r}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-bold text-muted-foreground">{score.b}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-bold">{score["4s"]}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-bold">{score["6s"]}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-black text-accent">{score.sr}</TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
+                  </TableBody>
                 </Table>
               </div>
 
@@ -174,18 +174,18 @@ export default function Results() {
                       <TableHead className="px-8 py-6 text-right text-xs font-black uppercase tracking-widest text-muted-foreground">Eco</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <tbody className="divide-y divide-white/5">
+                  <TableBody>
                     {inning.bowling?.map((bowl: any, bIdx: number) => (
-                      <tr key={bIdx} className="hover:bg-white/5 transition-colors">
-                        <td className="px-8 py-6 font-black text-lg">{bowl.bowler?.name}</td>
-                        <td className="px-8 py-6 text-right font-bold">{bowl.o}</td>
-                        <td className="px-8 py-6 text-right font-bold">{bowl.m}</td>
-                        <td className="px-8 py-6 text-right font-black text-xl">{bowl.r}</td>
-                        <td className="px-8 py-6 text-right font-black text-3xl text-primary">{bowl.w}</td>
-                        <td className="px-8 py-6 text-right font-black text-accent">{bowl.eco}</td>
-                      </tr>
+                      <TableRow key={bIdx} className="hover:bg-white/5 transition-colors">
+                        <TableCell className="px-8 py-6 font-black text-lg">{bowl.bowler?.name}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-bold">{bowl.o}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-bold">{bowl.m}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-black text-xl">{bowl.r}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-black text-3xl text-primary">{bowl.w}</TableCell>
+                        <TableCell className="px-8 py-6 text-right font-black text-accent">{bowl.eco}</TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
+                  </TableBody>
                 </Table>
               </div>
             </div>
