@@ -322,3 +322,48 @@ export async function getUserContestEntries(userId: number): Promise<ContestEntr
     return [];
   }
 }
+
+export async function getContestsByMatch(matchId: string): Promise<Contest[]> {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select().from(contests).where(eq(contests.matchId, matchId));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get contests by match:", error);
+    return [];
+  }
+}
+
+export async function createContest(contestData: {
+  matchId: string;
+  name: string;
+  totalSpots: number;
+  entryFee: string;
+  prizePool: string;
+  type: string;
+}): Promise<{ success: boolean; message: string; contestId?: number }> {
+  const db = await getDb();
+  if (!db) {
+    return { success: false, message: "Database not available" };
+  }
+
+  try {
+    const result = await db.insert(contests).values({
+      matchId: contestData.matchId,
+      name: contestData.name,
+      totalSpots: contestData.totalSpots,
+      currentEntries: 0,
+      entryFee: contestData.entryFee,
+      prizePool: contestData.prizePool,
+      type: contestData.type,
+      status: "upcoming",
+    }) as unknown as ResultSetHeader;
+
+    return { success: true, message: "Contest created successfully", contestId: Number(result.insertId) };
+  } catch (error) {
+    console.error("[Database] Failed to create contest:", error);
+    return { success: false, message: "Failed to create contest" };
+  }
+}

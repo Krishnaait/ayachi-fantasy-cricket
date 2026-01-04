@@ -73,12 +73,12 @@ export default function Contests() {
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs font-bold">
                         <span>{contest.currentEntries} joined</span>
-                        <span className="text-muted-foreground">{contest.maxEntries - contest.currentEntries} left</span>
+                        <span className="text-muted-foreground">{contest.totalSpots - contest.currentEntries} left</span>
                       </div>
                       <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-primary transition-all duration-500" 
-                          style={{ width: `${(contest.currentEntries / contest.maxEntries) * 100}%` }}
+                          style={{ width: `${(contest.currentEntries / contest.totalSpots) * 100}%` }}
                         ></div>
                       </div>
                     </div>
@@ -86,7 +86,7 @@ export default function Contests() {
                     <div className="flex items-center justify-between text-xs text-muted-foreground pt-2">
                       <span className="flex items-center gap-1">
                         <Users className="h-3 w-3" />
-                        Max {contest.maxEntries} teams
+                        Max {contest.totalSpots} teams
                       </span>
                       <span className="flex items-center gap-1 uppercase font-bold text-primary/60">
                         <Clock className="h-3 w-3" />
@@ -97,10 +97,13 @@ export default function Contests() {
                     <Button 
                       className="w-full font-bold py-6" 
                       onClick={() => handleJoinContest(contest.id)}
-                      disabled={contest.status !== "upcoming" || !isAuthenticated || contest.currentEntries >= contest.maxEntries}
+                      disabled={contest.status !== "upcoming" || !isAuthenticated || contest.currentEntries >= contest.totalSpots}
                     >
                       {isAuthenticated ? "JOIN NOW" : "LOGIN TO JOIN"}
                     </Button>
+                    <p className="text-[10px] text-center text-muted-foreground italic">
+                      * This is a free-to-play contest for educational purposes.
+                    </p>
                   </CardContent>
                 </Card>
               ))}
