@@ -7,7 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Calendar, PlayCircle, CheckCircle2 } from "lucide-react";
 
 export default function Matches() {
-  const { data: matches, isLoading, refetch } = trpc.matches.list.useQuery();
+  co  const { data: matches, isLoading } = trpc.matches.list.useQuery(undefined, {
+    refetchInterval: 15000,
+  });ry();
   const [activeTab, setActiveTab] = useState("live");
 
   // Auto-refresh live matches every 15 seconds
@@ -21,13 +23,17 @@ export default function Matches() {
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, []);  const [selectedDate, setSelectedDate] = useState<string>("");
 
-  const liveMatches = matches?.filter(m => m.matchStarted && !m.matchEnded) || [];
-  const upcomingMatches = matches?.filter(m => !m.matchStarted) || [];
-  const completedMatches = matches?.filter(m => m.matchEnded) || [];
+  const filteredMatches = matches?.filter(m => {
+    if (!selectedDate) return true;
+    const matchDate = new Date(m.date).toISOString().split('T')[0];
+    return matchDate === selectedDate;
+  }) || [];
 
-  if (isLoading) {
+  const liveMatches = filteredMatches.filter(m => m.matchStarted && !m.matchEnded);
+  const upcomingMatches = filteredMatches.filter(m => !m.matchStarted);
+  const completedMatches = filteredMatches.filter(m => m.matchEnded);if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -42,15 +48,34 @@ export default function Matches() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      <main className="flex-1 container py-12 px-4 max-w-7xl mx-auto">
-        <div className="mb-10 text-center">
+      <main className="flex-1 container py-12 px-4 max-w-7xl         <div className="mb-10 text-center">
           <h1 className="text-4xl font-black text-gray-900 mb-4">Cricket Matches</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
             Browse all live, upcoming, and completed matches. Join contests and track real-time scores.
           </p>
-        </div>
-
-        <Tabs defaultValue="live" className="w-full" onValueChange={setActiveTab}>
+          
+          <div className="flex justify-center items-center gap-4 mb-8">
+            <div className="flex items-center gap-2 bg-white border rounded-xl px-4 py-2 shadow-sm">
+              <Calendar className="h-4 w-4 text-primary" />
+              <input 
+                type="date" 
+                className="outline-none text-sm font-medium"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              />
+            </div>
+            {selectedDate && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setSelectedDate("")}
+                className="text-xs"
+              >
+                Clear Filter
+              </Button>
+            )}
+          </div>
+        </div>     <Tabs defaultValue="live" className="w-full" onValueChange={setActiveTab}>
           <div className="flex justify-center mb-12">
             <TabsList className="bg-white border shadow-sm p-1 h-14 rounded-2xl">
               <TabsTrigger value="live" className="rounded-xl px-8 data-[state=active]:bg-red-600 data-[state=active]:text-white flex items-center gap-2">

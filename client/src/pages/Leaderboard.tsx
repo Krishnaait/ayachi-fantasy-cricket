@@ -1,11 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { trpc } from "../lib/trpc";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Trophy, Medal, User } from "lucide-react";
 
 export default function Leaderboard() {
-  const { data: leaderboard, isLoading } = trpc.getGlobalLeaderboard.useQuery();
+  const { data: leaderboard, isLoading, refetch } = trpc.getGlobalLeaderboard.useQuery();
+
+  // Auto-refresh leaderboard every 60 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 60000);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">

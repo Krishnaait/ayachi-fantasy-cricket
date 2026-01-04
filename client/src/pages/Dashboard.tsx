@@ -70,7 +70,7 @@ export default function Dashboard() {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Link href="/">
+                <Link href="/matches">
                   <Button className="w-full">
                     <Plus className="h-4 w-4 mr-2" />
                     Create New Team
@@ -106,7 +106,7 @@ export default function Dashboard() {
                 ) : (
                   <div className="text-center py-8">
                     <p className="text-muted-foreground mb-4">You haven't created any teams yet</p>
-                    <Link href="/">
+                    <Link href="/matches">
                       <Button>Create Your First Team</Button>
                     </Link>
                   </div>

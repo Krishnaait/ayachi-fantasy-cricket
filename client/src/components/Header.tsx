@@ -31,8 +31,8 @@ export default function Header() {
           <Link href="/about" className="transition-colors hover:text-primary">
             About Us
           </Link>
-          <Link href="/contact" className="transition-colors hover:text-primary">
-            Contact
+          <Link href="/matches" className="transition-colors hover:text-primary">
+            Matches
           </Link>
           <Link href="/faq" className="transition-colors hover:text-primary">
             FAQ
@@ -102,8 +102,8 @@ export default function Header() {
               <Link href="/about">
                 <DropdownMenuItem>About Us</DropdownMenuItem>
               </Link>
-              <Link href="/contact">
-                <DropdownMenuItem>Contact</DropdownMenuItem>
+              <Link href="/matches">
+                <DropdownMenuItem>Matches</DropdownMenuItem>
               </Link>
               <Link href="/faq">
                 <DropdownMenuItem>FAQ</DropdownMenuItem>
