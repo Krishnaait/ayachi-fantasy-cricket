@@ -118,14 +118,70 @@ export const appRouter = router({
   // Match management
   matches: router({
     list: publicProcedure.query(async () => {
-      const { getMatches } = await import("./lib/cricketApi");
-      return await getMatches();
+      const { getCurrentMatches } = await import("./lib/cricketApi");
+      return await getCurrentMatches();
     }),
-    squad: publicProcedure
-      .input(z.object({ matchId: z.string() }))
+    all: publicProcedure
+      .input(z.object({ offset: z.number().default(0) }))
       .query(async ({ input }) => {
-        const { getSquad } = await import("./lib/cricketApi");
-        return await getSquad(input.matchId);
+        const { getMatchesList } = await import("./lib/cricketApi");
+        return await getMatchesList(input.offset);
+      }),
+    info: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getMatchInfo } = await import("./lib/cricketApi");
+        return await getMatchInfo(input.id);
+      }),
+    squad: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getFantasySquad } = await import("./lib/cricketApi");
+        return await getFantasySquad(input.id);
+      }),
+    scorecard: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getFantasyScorecard } = await import("./lib/cricketApi");
+        return await getFantasyScorecard(input.id);
+      }),
+    points: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getFantasyMatchPoints } = await import("./lib/cricketApi");
+        return await getFantasyMatchPoints(input.id);
+      }),
+  }),
+
+  // Series management
+  series: router({
+    list: publicProcedure
+      .input(z.object({ offset: z.number().default(0) }))
+      .query(async ({ input }) => {
+        const { getSeriesList } = await import("./lib/cricketApi");
+        return await getSeriesList(input.offset);
+      }),
+    points: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getSeriesPointTable } = await import("./lib/cricketApi");
+        return await getSeriesPointTable(input.id);
+      }),
+  }),
+
+  // Player management
+  players: router({
+    list: publicProcedure
+      .input(z.object({ offset: z.number().default(0) }))
+      .query(async ({ input }) => {
+        const { getPlayersList } = await import("./lib/cricketApi");
+        return await getPlayersList(input.offset);
+      }),
+    info: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        const { getPlayerInfo } = await import("./lib/cricketApi");
+        return await getPlayerInfo(input.id);
       }),
   }),
 
