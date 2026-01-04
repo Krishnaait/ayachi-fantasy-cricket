@@ -29,8 +29,8 @@ export default function Matches() {
 
   const filteredMatches = matches?.filter(m => {
     if (!selectedDate) return true;
-    const matchDate = new Date(m.date).toISOString().split('T')[0];
-    return matchDate === selectedDate;
+    // The API provides m.date in YYYY-MM-DD format
+    return m.date === selectedDate;
   }) || [];
 
   const now = new Date();

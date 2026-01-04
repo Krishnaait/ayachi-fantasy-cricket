@@ -114,7 +114,7 @@ export default function Results() {
             Detailed Scorecard
           </h2>
           
-          {scorecard?.data?.batting?.map((inning: any, idx: number) => (
+          {scorecard?.scorecard?.map((inning: any, idx: number) => (
             <Card key={idx} className="overflow-hidden border-gray-200 shadow-sm">
               <div className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
                 <h3 className="font-bold text-lg">{inning.inning}</h3>
@@ -135,7 +135,7 @@ export default function Results() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
-                    {inning.scores?.map((score: any, sIdx: number) => (
+                    {inning.batting?.map((score: any, sIdx: number) => (
                       <tr key={sIdx} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 font-medium text-gray-900">{score.batsman?.name}</td>
                         <td className="px-6 py-4 text-gray-500 italic">{score["dismissal-text"]}</td>
@@ -167,7 +167,7 @@ export default function Results() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
-                    {scorecard?.data?.bowling?.[idx]?.scores?.map((bowl: any, bIdx: number) => (
+                    {inning.bowling?.map((bowl: any, bIdx: number) => (
                       <tr key={bIdx} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 font-medium text-gray-900">{bowl.bowler?.name}</td>
                         <td className="px-6 py-4 text-right">{bowl.o}</td>

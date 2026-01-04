@@ -59,7 +59,11 @@ export default function CreateTeam() {
 
   // The API returns the squad in a nested structure: Array of teams, each with a players array
   const players = Array.isArray(squadData) 
-    ? squadData.flatMap((team: any) => team.players || []) 
+    ? squadData.flatMap((team: any) => (team.players || []).map((p: any) => ({
+        ...p,
+        teamName: team.teamName,
+        teamImg: team.img
+      }))) 
     : [];
   const totalCredits = 100;
   const usedCredits = selectedPlayers.length * 9; // Mock credits since API doesn't provide them
