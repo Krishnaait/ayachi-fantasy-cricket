@@ -47,15 +47,20 @@ export default function CreateTeam() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex-1 flex items-center justify-center">
-          <Loader2 className="h-12 w-12 text-primary animate-spin" />
+          <div className="text-center space-y-4">
+            <Loader2 className="h-12 w-12 text-primary animate-spin mx-auto" />
+            <p className="text-muted-foreground animate-pulse">Fetching real-time squad data...</p>
+          </div>
         </div>
         <Footer />
       </div>
     );
   }
 
-  // The API returns the squad directly in the data field or within a nested data field
-  const players = squadData || [];
+  // The API returns the squad in a nested structure: Array of teams, each with a players array
+  const players = Array.isArray(squadData) 
+    ? squadData.flatMap((team: any) => team.players || []) 
+    : [];
   const totalCredits = 100;
   const usedCredits = selectedPlayers.length * 9; // Mock credits since API doesn't provide them
 

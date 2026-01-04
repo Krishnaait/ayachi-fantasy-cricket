@@ -21,10 +21,16 @@ interface MatchCardProps {
 }
 
 export default function MatchCard({ match, type }: MatchCardProps) {
-  const team1 = match.teamInfo?.[0] || { name: match.teams[0], shortname: match.teams[0]?.substring(0, 3).toUpperCase(), img: "" };
-  const team2 = match.teamInfo?.[1] || { name: match.teams[1], shortname: match.teams[1]?.substring(0, 3).toUpperCase(), img: "" };
-
-  return (
+  const team1 = match.teamInfo?.[0] || { 
+    name: match.teams?.[0] || "TBC", 
+    shortname: (match.teams?.[0] || "TBC").substring(0, 3).toUpperCase(), 
+    img: "" 
+  };
+  const team2 = match.teamInfo?.[1] || { 
+    name: match.teams?.[1] || "TBC", 
+    shortname: (match.teams?.[1] || "TBC").substring(0, 3).toUpperCase(), 
+    img: "" 
+  }; return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow border-primary/20 bg-card/50 backdrop-blur-sm">
       <CardHeader className="bg-muted/30 pb-3">
         <div className="flex justify-between items-center">
