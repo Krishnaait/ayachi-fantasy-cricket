@@ -84,15 +84,16 @@ export default function Leaderboard() {
                         </td>
                       </tr>
                     ))}
-                  {(!leaderboard || leaderboard.length === 0) && (
-                    <tr>
-                      <td colSpan={4} className="px-6 py-12 text-center text-gray-500">
-                        No rankings available yet. Join a contest to start climbing!
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                    {(!leaderboard || leaderboard.length === 0) && (
+                      <tr>
+                        <td colSpan={4} className="px-6 py-12 text-center text-gray-500">
+                          No rankings available yet. Join a contest to start climbing!
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
