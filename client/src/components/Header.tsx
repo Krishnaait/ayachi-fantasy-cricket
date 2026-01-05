@@ -17,7 +17,7 @@ export default function Header() {
       <div className="container flex h-20 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
-          <img src="/ayachi_logo.svg" alt="AYACHI" className="h-14 w-auto group-hover:scale-110 transition-transform duration-300" />
+          <img src="/logo.svg" alt="AYACHI" className="h-14 w-auto group-hover:scale-110 transition-transform duration-300" />
           <span className="text-2xl font-black tracking-tighter gaming-gradient-text hidden sm:block">CricIQ Play</span>
         </Link>
 

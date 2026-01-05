@@ -16,9 +16,9 @@ export default function Footer() {
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
             <div className="flex space-x-4">
-              <img src="/icon_18plus.svg" alt="18+" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
-              <img src="/icon_safe_secure.svg" alt="Safe & Secure" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
-              <img src="/icon_educational.svg" alt="Educational" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/18plus.svg" alt="18+" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/safe_secure.svg" alt="Safe & Secure" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/educational.svg" alt="Educational" className="h-12 w-12 object-contain grayscale hover:grayscale-0 transition-all" />
             </div>
           </div>
 

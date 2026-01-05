@@ -88,15 +88,15 @@ export default function Home() {
               
               <div className="flex flex-wrap gap-8 pt-8 border-t">
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_18plus.svg" alt="18+" className="h-10 w-10 object-contain" />
+                  <img src="/18plus.svg" alt="18+" className="h-10 w-10 object-contain" />
                   <span className="font-medium">18+ Only</span>
                 </div>
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_safe_secure.svg" alt="Safe & Secure" className="h-10 w-10 object-contain" />
+                  <img src="/safe_secure.svg" alt="Safe & Secure" className="h-10 w-10 object-contain" />
                   <span className="font-medium">Safe & Secure</span>
                 </div>
                 <div className="flex items-center gap-3 bg-background/50 backdrop-blur-sm p-3 rounded-xl border border-border">
-                  <img src="/icon_educational.svg" alt="Educational" className="h-10 w-10 object-contain" />
+                  <img src="/educational.svg" alt="Educational" className="h-10 w-10 object-contain" />
                   <span className="font-medium">Educational</span>
                 </div>
               </div>
