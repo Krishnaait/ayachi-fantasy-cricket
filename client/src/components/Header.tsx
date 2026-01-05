@@ -18,7 +18,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
           <img src="/ayachi_logo.svg" alt="AYACHI" className="h-14 w-auto group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-2xl font-black tracking-tighter gaming-gradient-text hidden sm:block">AYACHI</span>
+          <span className="text-2xl font-black tracking-tighter gaming-gradient-text hidden sm:block">CricIQ Play</span>
         </Link>
 
         {/* Desktop Navigation */}

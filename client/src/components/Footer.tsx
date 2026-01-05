@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-3 group">
               <img src="/ayachi_logo.svg" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
-              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">AYACHI</span>
+              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">CricIQ Play</span>
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
             <div className="flex space-x-4">
@@ -88,17 +88,33 @@ export default function Footer() {
 
           {/* Company Details */}
           <div>
-            <h3 className="font-semibold mb-4">Company Details</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p className="font-medium text-foreground">AYACHI HEALTHCARE PRIVATE LIMITED</p>
-              <p>CIN: U24110UP2020PTC135826</p>
-              <p>GST: 09AAUCA1674K1Z1</p>
-              <p>PAN: AAUCA1674K</p>
-              <p className="pt-2">
-                H. NO. 1/104, NEW JIA MAU,<br />
-                NEAR PARAG ATM, LUCKNOW,<br />
-                Uttar Pradesh, 226001
-              </p>
+            <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-6">Company Details</h3>
+            <div className="space-y-4 text-sm text-muted-foreground font-bold">
+              <p className="text-foreground font-black uppercase tracking-tighter">AYACHI HEALTHCARE PRIVATE LIMITED</p>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">CIN</p>
+                <p className="text-white">U24110UP2020PTC135826</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">GST</p>
+                <p className="text-white">09AAUCA1674K1Z1</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">PAN</p>
+                <p className="text-white">AAUCA1674K</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">Address</p>
+                <p className="text-white leading-relaxed">
+                  H. NO. 1/104, NEW JIA MAU,<br />
+                  NEAR PARAG ATM, LUCKNOW,<br />
+                  Lucknow, Uttar Pradesh, 226001
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">Website</p>
+                <p className="text-primary">www.criciqplay.com</p>
+              </div>
             </div>
           </div>
         </div>
