@@ -26,18 +26,20 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 py-12 px-4">
+      <main className="flex-1 py-20 px-4 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 -z-10"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-primary/5 blur-[120px] -z-10"></div>
         <div className="container max-w-6xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Contact Us</h1>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-center gaming-gradient-text">CONTACT US</h1>
           <p className="text-xl text-center text-muted-foreground mb-12">
             Have questions? We're here to help!
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Contact Form */}
-            <Card>
+            <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Send Us a Message</CardTitle>
+                <CardTitle className="text-2xl font-black tracking-tight uppercase">Send Us a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -87,7 +89,7 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" size="lg">
+                  <Button type="submit" className="w-full gaming-button font-black uppercase tracking-widest bg-primary text-black" size="lg">
                     Send Message
                   </Button>
                 </form>
@@ -96,7 +98,7 @@ export default function Contact() {
 
             {/* Contact Information */}
             <div className="space-y-6">
-              <Card>
+              <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Building2 className="h-5 w-5 text-primary" />
@@ -105,7 +107,7 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="font-semibold text-lg mb-2">AYACHI HEALTHCARE PRIVATE LIMITED</p>
+                    <p className="font-black text-lg mb-2 uppercase tracking-tight text-primary">AYACHI HEALTHCARE PRIVATE LIMITED</p>
                     <div className="space-y-2 text-muted-foreground">
                       <p><strong>CIN:</strong> U24110UP2020PTC135826</p>
                       <p><strong>GST:</strong> 09AAUCA1674K1Z1</p>
@@ -115,7 +117,7 @@ export default function Contact() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-primary" />
@@ -133,7 +135,7 @@ export default function Contact() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-primary" />
@@ -155,7 +157,7 @@ export default function Contact() {
           </div>
 
           {/* FAQ Quick Links */}
-          <Card>
+          <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
             <CardHeader>
               <CardTitle className="text-2xl">Frequently Asked Questions</CardTitle>
             </CardHeader>
