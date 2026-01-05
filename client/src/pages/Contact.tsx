@@ -32,7 +32,7 @@ export default function Contact() {
         <div className="container max-w-6xl">
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-center gaming-gradient-text">CONTACT US</h1>
           <p className="text-xl text-center text-muted-foreground mb-12">
-            Have questions? We're here to help!
+            Have questions? Reach out to us at <span className="text-primary font-bold">support@criciqplay.com</span>
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -101,8 +101,8 @@ export default function Contact() {
               <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Building2 className="h-5 w-5 text-primary" />
-                    Company Information
+                    <Mail className="h-5 w-5 text-primary" />
+                    Contact Details
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -112,6 +112,7 @@ export default function Contact() {
                       <p><strong>CIN:</strong> U24110UP2020PTC135826</p>
                       <p><strong>GST:</strong> 09AAUCA1674K1Z1</p>
                       <p><strong>PAN:</strong> AAUCA1674K</p>
+                      <p><strong>Email:</strong> support@criciqplay.com</p>
                     </div>
                   </div>
                 </CardContent>

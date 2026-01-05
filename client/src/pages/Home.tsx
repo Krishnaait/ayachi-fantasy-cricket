@@ -201,7 +201,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">OUR GOALS</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              At CricIQ Play, our mission is to revolutionize fantasy cricket by creating a completely free, educational, 
+              At AYACHI, our mission is to revolutionize fantasy cricket by creating a completely free, educational, 
               and skill-based platform that empowers cricket enthusiasts to deepen their understanding of the game 
               without any financial risk.
             </p>
@@ -266,9 +266,9 @@ export default function Home() {
 	      <section className="py-20 px-4 bg-muted/50">
 	        <div className="container">
 	          <div className="text-center mb-12">
-	            <h2 className="text-3xl md:text-4xl font-bold mb-4">The CricIQ Play Experience</h2>
+	            <h2 className="text-3xl md:text-4xl font-bold mb-4">The AYACHI Experience</h2>
 	            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-	              From building your team to competing for the top spot, see what makes CricIQ Play unique.
+	              From building your team to competing for the top spot, see what makes AYACHI unique.
 	            </p>
 	          </div>
 	          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -309,7 +309,7 @@ export default function Home() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Learn Without Financial Risk</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                CricIQ Play is designed to be a completely risk-free environment where you can learn, experiment, and 
+                AYACHI is designed to be a completely risk-free environment where you can learn, experiment, and 
                 grow your cricket knowledge without worrying about losing money.
               </p>
               <div className="space-y-4 mt-6">
@@ -581,7 +581,7 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  CricIQ Play is operated by AYACHI HEALTHCARE PRIVATE LIMITED, a legally registered company 
+                  AYACHI is operated by AYACHI HEALTHCARE PRIVATE LIMITED, a legally registered company 
                   in India. Our CIN, GST, PAN, and complete address are publicly displayed on our website 
                   for your verification and trust.
                 </CardContent>
@@ -646,17 +646,17 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
               <p className="text-lg text-muted-foreground">
-                Quick answers to common questions about CricIQ Play
+                Quick answers to common questions about AYACHI
               </p>
             </div>
             
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-left">
-                  Is CricIQ Play really 100% free to play?
+                  Is AYACHI really 100% free to play?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes! CricIQ Play is completely free. There are no entry fees, no premium features, 
+                  Yes! AYACHI is completely free. There are no entry fees, no premium features, 
                   no hidden costs, and no in-app purchases. You can create unlimited teams and 
                   join all contests without spending a single rupee.
                 </AccordionContent>
@@ -667,7 +667,7 @@ export default function Home() {
                   Do I need to be 18+ to play?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes, you must be 18 years or older to register and play on CricIQ Play. We verify 
+                  Yes, you must be 18 years or older to register and play on AYACHI. We verify 
                   age during registration through date of birth verification to ensure compliance 
                   with legal requirements.
                 </AccordionContent>
@@ -675,10 +675,10 @@ export default function Home() {
               
               <AccordionItem value="item-3">
                 <AccordionTrigger className="text-left">
-                  Which states are restricted from using CricIQ Play?
+                  Which states are restricted from using AYACHI?
                 </AccordionTrigger>
                 <AccordionContent>
-                  CricIQ Play is NOT available in the following states: Andhra Pradesh, Assam, Odisha, 
+                  AYACHI is NOT available in the following states: Andhra Pradesh, Assam, Odisha, 
                   Telangana, Nagaland, and Sikkim. Users from these states cannot register or 
                   participate on our platform due to local regulations.
                 </AccordionContent>
@@ -686,10 +686,10 @@ export default function Home() {
               
               <AccordionItem value="item-4">
                 <AccordionTrigger className="text-left">
-                  How is CricIQ Play different from other fantasy cricket platforms?
+                  How is AYACHI different from other fantasy cricket platforms?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Unlike other platforms, CricIQ Play is 100% free with no real money involved. We focus 
+                  Unlike other platforms, AYACHI is 100% free with no real money involved. We focus 
                   purely on education and skill development. There are no cash prizes, no deposits, 
                   and no financial risks - just pure cricket knowledge and fun competition.
                 </AccordionContent>
@@ -756,7 +756,7 @@ export default function Home() {
             Ready to Start Your Fantasy Cricket Journey?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of cricket enthusiasts on CricIQ Play today!
+            Join thousands of cricket enthusiasts on AYACHI today!
           </p>
           <Link href="/register">
             <Button size="lg" variant="secondary" className="text-lg px-8">

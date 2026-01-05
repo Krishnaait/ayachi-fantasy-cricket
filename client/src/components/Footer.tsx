@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-3 group">
               <img src="/ayachi_logo.svg" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
-              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">CricIQ Play</span>
+              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">AYACHI</span>
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
             <div className="flex space-x-4">
@@ -119,6 +119,10 @@ export default function Footer() {
               <div className="space-y-1">
                 <p className="text-[10px] uppercase tracking-widest opacity-50">Website</p>
                 <p className="text-primary">www.criciqplay.com</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] uppercase tracking-widest opacity-50">Support Email</p>
+                <p className="text-primary">support@criciqplay.com</p>
               </div>
             </div>
           </div>
