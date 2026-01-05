@@ -10,9 +10,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="flex items-center gap-3 group">
-              <img src="/ayachi_logo.svg" alt="AYACHI" className="h-16 w-auto group-hover:scale-110 transition-transform" />
-              <span className="text-2xl font-black tracking-tighter gaming-gradient-text">AYACHI</span>
+            <div className="flex items-center group">
+              <img src="/logo.svg" alt="AYACHI" className="h-20 w-auto group-hover:scale-110 transition-transform" />
             </div>
             <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">The Ultimate Fantasy Arena</p>
             <div className="flex space-x-4">
